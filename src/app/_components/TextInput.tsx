@@ -1,28 +1,15 @@
-'use client';
-
 import type { InputHTMLAttributes } from 'react';
 import React from 'react';
-import { css } from 'styled-system/css';
+import { input } from './styles/input';
+
 type TypeAttribute = Extract<
   Pick<InputHTMLAttributes<HTMLInputElement>, 'type'>['type'],
-  'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url'
+  'email' | 'password' | 'search' | 'tel' | 'text' | 'url'
 >;
 type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
   type?: TypeAttribute;
 };
 
 export default function TextInput({ type = 'text', ...args }: Props) {
-  return (
-    <input
-      className={css({
-        height: 'xl',
-        fontSize: 'md',
-        border: 'primary',
-        boxSizing: 'border-box',
-        borderRadius: 'input',
-      })}
-      type={type}
-      {...args}
-    />
-  );
+  return <input className={input()} type={type} {...args} />;
 }
