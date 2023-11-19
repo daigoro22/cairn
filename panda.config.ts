@@ -13,11 +13,19 @@ export default defineConfig({
   theme: {
     tokens: {
       sizes: {
+        xs: { value: '0.5rem' },
         sm: { value: '0.625rem' },
         md: { value: '1rem' },
         bg: { value: '1.5rem' },
         xl: { value: '2rem' },
         border: { input: { value: '1px' } },
+      },
+      spacing: {
+        xs: { value: '{sizes.xs}' },
+        sm: { value: '{sizes.sm}' },
+        md: { value: '{sizes.md}' },
+        bg: { value: '{sizes.bg}' },
+        xl: { value: '{sizes.xl}' },
       },
       colors: {
         primary: { light: { value: '#7FFFD4' }, dark: { value: '#40806A' } },

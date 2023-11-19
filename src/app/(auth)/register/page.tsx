@@ -6,6 +6,7 @@ import TextInput from '../../_components/TextInput';
 import React from 'react';
 import DateInput from '@/app/_components/DateInput';
 import RadioInput from '@/app/_components/RadioInput';
+import CheckBoxInput from '@/app/_components/Checkbox';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -21,6 +22,7 @@ export default function Register() {
       <DateInput />
       <RadioInput name="sex" value="male" label="男" />
       <RadioInput name="sex" value="female" label="女" />
+      <CheckBoxInput name="confirmation" label="利用規約への同意" />
       <button
         onClick={() => {
           supabase.auth
