@@ -2,6 +2,8 @@
 
 import { supabase } from '@/utils/supabase';
 import { useState } from 'react';
+import TextInput from '../../_components/TextInput';
+import React from 'react';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -9,8 +11,11 @@ export default function Register() {
 
   return (
     <main>
-      <input type="text" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" onChange={(e) => setPassword(e.target.value)} />
+      <TextInput onChange={(e) => setEmail(e.target.value)} />
+      <TextInput
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <button
         onClick={() => {
           supabase.auth.signUp({ email, password }).catch((error) => {
