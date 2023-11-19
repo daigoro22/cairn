@@ -18,9 +18,8 @@ export default function Register() {
               email,
               password,
             })
-            .catch((error) => {
-              throw new Error(error.message);
-            });
+            .then(console.log)
+            .catch(console.error);
         }}
       >
         ログイン
