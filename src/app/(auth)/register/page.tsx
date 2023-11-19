@@ -4,6 +4,7 @@ import { supabase } from '@/utils/supabase';
 import { useState } from 'react';
 import TextInput from '../../_components/TextInput';
 import React from 'react';
+import DateInput from '@/app/_components/DateInput';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -16,6 +17,7 @@ export default function Register() {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
+      <DateInput />
       <button
         onClick={() => {
           supabase.auth
