@@ -1,6 +1,7 @@
 'use client';
 
-import React, { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from 'react';
+import React from 'react';
 import { css } from 'styled-system/css';
 type TypeAttribute = Extract<
   Pick<InputHTMLAttributes<HTMLInputElement>, 'type'>['type'],

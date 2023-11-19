@@ -18,9 +18,10 @@ export default function Register() {
       />
       <button
         onClick={() => {
-          supabase.auth.signUp({ email, password }).catch((error) => {
-            throw new Error(error.message);
-          });
+          supabase.auth
+            .signUp({ email, password })
+            .then(console.log)
+            .catch(console.error);
         }}
       >
         登録
