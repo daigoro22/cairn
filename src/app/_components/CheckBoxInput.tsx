@@ -10,7 +10,7 @@ export default function CheckBoxInput({
   return (
     <div className={radioAndCheckboxContainer()}>
       <input id={name} name={name} type="checkbox" className={input()} />
-      <label htmlFor={name}>{label}</label>{' '}
+      <label htmlFor={name}>{label}</label>
     </div>
   );
 }
