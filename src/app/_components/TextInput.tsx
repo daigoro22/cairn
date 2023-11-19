@@ -2,9 +2,15 @@
 
 import React, { InputHTMLAttributes } from 'react';
 import { css } from 'styled-system/css';
-type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
+type TypeAttribute = Extract<
+  Pick<InputHTMLAttributes<HTMLInputElement>, 'type'>['type'],
+  'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url'
+>;
+type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
+  type?: TypeAttribute;
+};
 
-export default function TextInput({ ...args }: Props) {
+export default function TextInput({ type = 'text', ...args }: Props) {
   return (
     <input
       className={css({
@@ -14,7 +20,7 @@ export default function TextInput({ ...args }: Props) {
         boxSizing: 'border-box',
         borderRadius: 'input',
       })}
-      type="text"
+      type={type}
       {...args}
     />
   );
