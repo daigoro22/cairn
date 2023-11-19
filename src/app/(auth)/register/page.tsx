@@ -5,6 +5,7 @@ import { useState } from 'react';
 import TextInput from '../../_components/TextInput';
 import React from 'react';
 import DateInput from '@/app/_components/DateInput';
+import RadioInput from '@/app/_components/RadioInput';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -18,6 +19,8 @@ export default function Register() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <DateInput />
+      <RadioInput name="sex" value="male" label="男" />
+      <RadioInput name="sex" value="female" label="女" />
       <button
         onClick={() => {
           supabase.auth
