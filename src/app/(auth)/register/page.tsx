@@ -10,7 +10,6 @@ import CheckBoxInput from '@/app/_components/CheckBoxInput';
 import InputContainer from '@/app/_components/InputContainer';
 import RadioInputContainer from '@/app/_components/RadioInputContainer';
 import Button from '@/app/_components/Button';
-import { button } from '@/app/_components/styles/input';
 
 export default function Register() {
   const [email, setEmail] = useState('');
