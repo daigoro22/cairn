@@ -9,6 +9,7 @@ import RadioInput from '@/app/_components/RadioInput';
 import CheckBoxInput from '@/app/_components/CheckBoxInput';
 import InputContainer from '@/app/_components/InputContainer';
 import RadioInputContainer from '@/app/_components/RadioInputContainer';
+import Button from '@/app/_components/Button';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -35,7 +36,7 @@ export default function Register() {
           <RadioInput id="female" name="sex" value="female" label="女性" />
         </RadioInputContainer>
         <CheckBoxInput name="confirmation" label="利用規約への同意" />
-        <button
+        <Button
           onClick={() => {
             supabase.auth
               .signUp({ email, password })
@@ -44,7 +45,7 @@ export default function Register() {
           }}
         >
           登録
-        </button>
+        </Button>
       </form>
     </main>
   );
