@@ -36,6 +36,12 @@ export default defineConfig({
         primary: {
           value: '{sizes.border.input} solid {colors.primary.dark}',
         },
+        secondary: {
+          value: '{sizes.border.input} solid {colors.secondary.dark}',
+        },
+        tertiary: {
+          value: '{sizes.border.input} solid {colors.tertiary.dark}',
+        },
       },
       fontSizes: {
         sm: { value: '{sizes.sm}' },

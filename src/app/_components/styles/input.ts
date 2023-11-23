@@ -29,3 +29,31 @@ export const inputLabel = cva({
 export const inputContainer = cva({
   base: { display: 'flex', flexDirection: 'column' },
 });
+
+export const button = cva({
+  base: {
+    borderRadius: '0.25rem',
+    width: '5rem',
+    height: '2.5rem',
+    fontSize: 'md',
+  },
+  variants: {
+    visual: {
+      primary: {
+        backgroundColor: 'primary.light',
+        color: 'primary.dark',
+        border: 'primary',
+      },
+      secondary: {
+        backgroundColor: 'secondary.light',
+        color: 'secondary.dark',
+        border: 'secondary',
+      },
+      tertiary: {
+        backgroundColor: 'tertiary.light',
+        color: 'tertiary.dark',
+        border: 'tertiary',
+      },
+    },
+  },
+});
