@@ -6,6 +6,8 @@ export const input = cva({
     padding: 'md',
     marginLeft: 'xs',
     marginRight: 'xs',
+    marginTop: 'xs',
+    marginBottom: 'xs',
     fontSize: 'md',
     border: 'primary',
     boxSizing: 'border-box',
@@ -13,10 +15,17 @@ export const input = cva({
   },
 });
 
-export const radioAndCheckboxContainer = cva({
+export const inputLabel = cva({
   base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    height: 'xl',
+    padding: 'md',
+    marginTop: 'xs',
+    marginBottom: 'xs',
+    fontSize: 'md',
+    boxSizing: 'border-box',
   },
+});
+
+export const inputContainer = cva({
+  base: { display: 'flex', flexDirection: 'column' },
 });
