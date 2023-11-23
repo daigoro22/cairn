@@ -3,7 +3,12 @@ import type { PropsWithChildren } from 'react';
 
 const styleObject = {
   base: { position: 'relative' },
-  variants: { size: { header: { width: 'header', height: 'header' } } },
+  variants: {
+    size: {
+      header: { width: 'header', height: 'header' },
+      icon: { width: 'icon', height: 'icon' },
+    },
+  },
 } as const;
 
 const iconContainer = cva(styleObject);

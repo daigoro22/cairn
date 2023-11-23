@@ -3,6 +3,9 @@ import './globals.css';
 import Image from 'next/image';
 import ImageContainer from './_components/ImageContainer';
 import Link from 'next/link';
+import Button from './_components/Button';
+import InputContainer from './_components/InputContainer';
+import TextInput from './_components/TextInput';
 
 export const metadata = {
   title: 'Next.js',
@@ -23,6 +26,7 @@ export default function RootLayout({
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
+              alignItems: 'center',
             })}
           >
             <Link href="/">
@@ -46,6 +50,25 @@ export default function RootLayout({
                 <h1 className={css({ fontSize: 'xl' })}>Cairn</h1>
               </div>
             </Link>
+            <div
+              className={css({
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              })}
+            >
+              <TextInput id="search" type="search" placeholder="検索" />
+              <ImageContainer size="icon">
+                <Image
+                  src="/icon.png"
+                  sizes="100vw"
+                  fill
+                  objectFit="cover"
+                  alt="cairn"
+                />
+              </ImageContainer>
+              <Button>投稿</Button>
+            </div>
           </div>
         </header>
         {children}
