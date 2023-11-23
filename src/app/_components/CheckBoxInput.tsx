@@ -1,4 +1,5 @@
-import { input, radioAndCheckboxContainer } from './styles/input';
+import { css } from 'styled-system/css';
+import { input } from './styles/input';
 
 export default function CheckBoxInput({
   name,
@@ -8,7 +9,13 @@ export default function CheckBoxInput({
   label: string;
 }) {
   return (
-    <div className={radioAndCheckboxContainer()}>
+    <div
+      className={css({
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      })}
+    >
       <input id={name} name={name} type="checkbox" className={input()} />
       <label htmlFor={name}>{label}</label>
     </div>
