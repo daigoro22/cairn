@@ -16,7 +16,7 @@ export default defineConfig({
         xs: { value: '0.5rem' },
         sm: { value: '0.625rem' },
         md: { value: '1rem' },
-        bg: { value: '1.5rem' },
+        lg: { value: '1.5rem' },
         xl: { value: '2rem' },
         border: { input: { value: '1px' } },
       },
@@ -24,7 +24,7 @@ export default defineConfig({
         xs: { value: '{sizes.xs}' },
         sm: { value: '{sizes.sm}' },
         md: { value: '{sizes.md}' },
-        bg: { value: '{sizes.bg}' },
+        lg: { value: '{sizes.lg}' },
         xl: { value: '{sizes.xl}' },
       },
       colors: {

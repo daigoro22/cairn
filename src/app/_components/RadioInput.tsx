@@ -1,24 +1,32 @@
-import { input, radioAndCheckboxContainer } from './styles/input';
+import { css } from 'styled-system/css';
 
 export default function RadioInput({
+  id,
   name,
   value,
   label,
 }: {
+  id: string;
   name: string;
   value: string;
   label: string;
 }) {
   return (
-    <div className={radioAndCheckboxContainer()}>
+    <>
       <input
-        id={name}
+        id={id}
         name={name}
         value={value}
-        className={input()}
+        className={css({
+          padding: 'md',
+          marginLeft: 'xs',
+          marginRight: 'xs',
+        })}
         type="radio"
       />
-      <label htmlFor={name}>{label}</label>
-    </div>
+      <label className={css({ fontSize: 'md' })} htmlFor={id}>
+        {label}
+      </label>
+    </>
   );
 }
