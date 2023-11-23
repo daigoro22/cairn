@@ -1,4 +1,8 @@
+import { css } from 'styled-system/css';
 import './globals.css';
+import Image from 'next/image';
+import ImageContainer from './_components/ImageContainer';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Next.js',
@@ -12,7 +16,40 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={css({ bg: 'primary.bg' })}>
+        <header className={css({ height: 'header', bg: 'white' })}>
+          <div
+            className={css({
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            })}
+          >
+            <Link href="/">
+              <div
+                className={css({
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                })}
+              >
+                <ImageContainer size="header">
+                  <Image
+                    src="/icon.png"
+                    sizes="100vw"
+                    fill
+                    objectFit="cover"
+                    alt="cairn"
+                  />
+                </ImageContainer>
+                <h1 className={css({ fontSize: 'xl' })}>Cairn</h1>
+              </div>
+            </Link>
+          </div>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }

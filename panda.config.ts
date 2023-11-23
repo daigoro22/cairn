@@ -19,6 +19,7 @@ export default defineConfig({
         lg: { value: '1.5rem' },
         xl: { value: '2rem' },
         border: { input: { value: '1px' } },
+        header: { value: '6rem' },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
@@ -28,7 +29,11 @@ export default defineConfig({
         xl: { value: '{sizes.xl}' },
       },
       colors: {
-        primary: { light: { value: '#7FFFD4' }, dark: { value: '#40806A' } },
+        primary: {
+          light: { value: '#7FFFD4' },
+          dark: { value: '#40806A' },
+          bg: { value: '#E7FFF7' },
+        },
         secondary: { light: { value: '#FFD47F' }, dark: { value: '#8F7747' } },
         tertiary: { light: { value: '#D47FFF' }, dark: { value: '#6A4080' } },
       },
@@ -46,6 +51,8 @@ export default defineConfig({
       fontSizes: {
         sm: { value: '{sizes.sm}' },
         md: { value: '{sizes.md}' },
+        lg: { value: '{sizes.lg}' },
+        xl: { value: '{sizes.xl}' },
       },
       radii: {
         input: { value: '{sizes.sm}' },
