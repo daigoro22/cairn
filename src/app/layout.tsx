@@ -1,6 +1,7 @@
 import { css } from 'styled-system/css';
 import './globals.css';
 import Header from './_components/Header';
+import { bizUDPGothic } from './fonts';
 
 export const metadata = {
   title: 'Next.js',
@@ -13,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={bizUDPGothic.className}>
       <body
         className={css({
           bg: 'primary.bg',

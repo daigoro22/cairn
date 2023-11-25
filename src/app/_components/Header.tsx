@@ -4,6 +4,7 @@ import { css } from 'styled-system/css';
 import ImageContainer from './ImageContainer';
 import TextInput from './TextInput';
 import Button from './Button';
+import { delaGothicOne } from '../fonts';
 
 export default function Header() {
   return (
@@ -41,7 +42,13 @@ export default function Header() {
               alt="cairn"
             />
           </ImageContainer>
-          <h1 className={css({ fontSize: 'xl' })}>Cairn</h1>
+          <h1
+            className={`${css({ fontSize: 'xl', color: 'primary.dark' })} ${
+              delaGothicOne.className
+            }`}
+          >
+            Cairn
+          </h1>
         </div>
       </Link>
       <div
