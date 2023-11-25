@@ -1,4 +1,7 @@
+import { css } from 'styled-system/css';
 import './globals.css';
+import Header from './_components/Header';
+import { bizUDPGothic } from './fonts';
 
 export const metadata = {
   title: 'Next.js',
@@ -11,8 +14,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={bizUDPGothic.className}>
+      <body
+        className={css({
+          bg: 'primary.bg',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(12,minmax(0,1fr))',
+          gridColumnGap: 'gridGap.main',
+        })}
+      >
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
