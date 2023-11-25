@@ -1,5 +1,6 @@
 import type { InputHTMLAttributes } from 'react';
 import React from 'react';
+import type { inputStyleObject } from './styles/input';
 import { input } from './styles/input';
 
 type TypeAttribute = Extract<
@@ -8,8 +9,15 @@ type TypeAttribute = Extract<
 >;
 type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
   type?: TypeAttribute;
+  variants?: {
+    [key in keyof typeof inputStyleObject.variants]: keyof (typeof inputStyleObject.variants)[key];
+  };
 };
 
-export default function TextInput({ type = 'text', ...args }: Props) {
-  return <input className={input()} type={type} {...args} />;
+export default function TextInput({
+  type = 'text',
+  variants = { marginX: 'xs' },
+  ...args
+}: Props) {
+  return <input className={input(variants)} type={type} {...args} />;
 }

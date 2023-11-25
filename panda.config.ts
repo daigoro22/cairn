@@ -20,6 +20,7 @@ export default defineConfig({
         xl: { value: '2rem' },
         border: { input: { value: '1px' } },
         header: { value: '6rem' },
+        icon: { value: '4rem' },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
@@ -27,6 +28,7 @@ export default defineConfig({
         md: { value: '{sizes.md}' },
         lg: { value: '{sizes.lg}' },
         xl: { value: '{sizes.xl}' },
+        gridGap: { main: { value: '24px' } },
       },
       colors: {
         primary: {
