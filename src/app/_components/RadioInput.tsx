@@ -12,14 +12,13 @@ export default function RadioInput({
   label: string;
 }) {
   return (
-    <>
+    <div className={css({ marginX: 'md' })}>
       <input
         id={id}
         name={name}
         value={value}
         className={css({
           padding: 'md',
-          marginLeft: 'xs',
           marginRight: 'xs',
         })}
         type="radio"
@@ -27,6 +26,6 @@ export default function RadioInput({
       <label className={css({ fontSize: 'md' })} htmlFor={id}>
         {label}
       </label>
-    </>
+    </div>
   );
 }

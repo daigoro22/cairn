@@ -19,7 +19,8 @@ export default function RootLayout({
         className={css({
           bg: 'primary.bg',
           display: 'grid',
-          gridTemplateColumns: 'repeat(12,minmax(0,1fr))',
+          gridTemplateColumns:
+            'repeat(4,minmax(0,1fr)) repeat(4,8rem) repeat(4,minmax(0,1fr))',
           gridColumnGap: 'gridGap.main',
         })}
       >
