@@ -16,7 +16,7 @@ type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
 
 export default function TextInput({
   type = 'text',
-  variants = { marginX: 'xs' },
+  variants = { marginX: 'xs', width: 'none' },
   ...args
 }: Props) {
   return <input className={input(variants)} type={type} {...args} />;

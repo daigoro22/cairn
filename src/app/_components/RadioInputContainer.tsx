@@ -8,11 +8,9 @@ export default function RadioInputContainer({ children }: PropsWithChildren) {
       <legend className={inputLabel()}>性別</legend>
       <div
         className={css({
-          paddingRight: 'md',
-          paddingLeft: 'md',
-          marginTop: 'xs',
-          marginBottom: 'xs',
           boxSizing: 'border-box',
+          display: 'flex',
+          justifyContent: 'flex-start',
         })}
       >
         {children}

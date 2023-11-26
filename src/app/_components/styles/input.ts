@@ -3,10 +3,7 @@ import { cva } from 'styled-system/css';
 export const inputStyleObject = {
   base: {
     height: 'xl',
-    width: '100%',
     padding: 'md',
-    marginTop: 'xs',
-    marginBottom: 'xs',
     fontSize: 'md',
     border: 'primary',
     boxSizing: 'border-box',
@@ -14,16 +11,14 @@ export const inputStyleObject = {
   },
   variants: {
     marginX: { xs: { marginLeft: 'xs', marginRight: 'xs' }, none: {} },
+    width: { fill: { width: '100%' }, none: {} },
   },
-  defaultVariants: { marginX: 'xs' },
+  defaultVariants: { marginX: 'xs', width: 'none' },
 } as const;
 export const input = cva(inputStyleObject);
 
 export const inputLabel = cva({
   base: {
-    height: 'xl',
-    padding: 'md',
-    marginTop: 'xs',
     marginBottom: 'xs',
     fontSize: 'md',
     boxSizing: 'border-box',
