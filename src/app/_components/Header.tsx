@@ -54,7 +54,7 @@ export default function Header() {
         })}
       >
         <TextInput
-          variants={{ marginX: 'none' }}
+          variants={{ marginX: 'none', width: 'none' }}
           id="search"
           type="search"
           placeholder="検索"
