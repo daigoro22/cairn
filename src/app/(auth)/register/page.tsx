@@ -31,9 +31,16 @@ export default function Register() {
         </h1>
         <form>
           <div className={card()}>
+            <InputContainer label="名前">
+              <TextInput
+                id="name"
+                variants={{ marginX: 'none', width: 'fill' }}
+              />
+            </InputContainer>
             <InputContainer label="メールアドレス">
               <TextInput
-                id="mail"
+                id="email"
+                type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 variants={{ marginX: 'none', width: 'fill' }}
               />
