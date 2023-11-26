@@ -29,6 +29,7 @@ export default defineConfig({
         lg: { value: '{sizes.lg}' },
         xl: { value: '{sizes.xl}' },
         gridGap: { main: { value: '24px' } },
+        header: { value: '{sizes.header}' },
       },
       colors: {
         primary: {
