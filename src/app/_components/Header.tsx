@@ -5,6 +5,13 @@ import ImageContainer from './ImageContainer';
 import TextInput from './TextInput';
 import Button from './Button';
 import { delaGothicOne } from '../fonts';
+import {
+  AcademicCapIcon,
+  ArrowLeftOnRectangleIcon,
+} from '@heroicons/react/24/solid';
+import FloatMenu from './FloatMenu';
+import FloatMenuItem from './FloatMenuItem';
+import { menuIcon } from './styles/display';
 
 export default function Header() {
   return (
@@ -69,10 +76,11 @@ export default function Header() {
         />
       </div>
       <div
-        className={css({
+        className={`${css({
           gridColumn: '11/12',
           margin: 'auto',
-        })}
+          position: 'relative',
+        })} group`}
       >
         <ImageContainer size="icon">
           <Image
@@ -83,6 +91,20 @@ export default function Header() {
             alt="cairn"
           />
         </ImageContainer>
+        <FloatMenu>
+          <Link href="/background">
+            <FloatMenuItem
+              icon={<AcademicCapIcon className={menuIcon()} />}
+              label="経歴登録"
+            ></FloatMenuItem>
+          </Link>
+          <button>
+            <FloatMenuItem
+              icon={<ArrowLeftOnRectangleIcon className={menuIcon()} />}
+              label="ログアウト"
+            />
+          </button>
+        </FloatMenu>
       </div>
       <div
         className={css({

@@ -21,6 +21,7 @@ export default defineConfig({
         border: { input: { value: '1px' } },
         header: { value: '6rem' },
         icon: { value: '4rem' },
+        menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
