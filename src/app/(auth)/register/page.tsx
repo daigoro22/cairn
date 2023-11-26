@@ -12,6 +12,7 @@ import RadioInputContainer from '@/app/_components/RadioInputContainer';
 import Button from '@/app/_components/Button';
 import { css } from 'styled-system/css';
 import { card, mainAreaGrid } from '@/app/_components/styles/layout';
+import FileInput from '@/app/_components/FileInput';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -36,6 +37,9 @@ export default function Register() {
                 id="name"
                 variants={{ marginX: 'none', width: 'fill' }}
               />
+            </InputContainer>
+            <InputContainer label="プロフィール画像">
+              <FileInput id="profileImage" />
             </InputContainer>
             <InputContainer label="メールアドレス">
               <TextInput
