@@ -13,6 +13,7 @@ import Button from '@/app/_components/Button';
 import { css } from 'styled-system/css';
 import { card, mainAreaGrid } from '@/app/_components/styles/layout';
 import FileInput from '@/app/_components/FileInput';
+import { mainAreaLabel } from '@/app/_components/styles/display';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -25,11 +26,7 @@ export default function Register() {
           gridColumn: '5/9',
         })}
       >
-        <h1
-          className={css({ fontSize: 'xl', gridColumn: '5/9', paddingY: 'xl' })}
-        >
-          ユーザ登録
-        </h1>
+        <h1 className={mainAreaLabel()}>ユーザ登録</h1>
         <form>
           <div className={card()}>
             <InputContainer label="名前">
