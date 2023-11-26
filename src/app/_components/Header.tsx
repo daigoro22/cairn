@@ -5,6 +5,10 @@ import ImageContainer from './ImageContainer';
 import TextInput from './TextInput';
 import Button from './Button';
 import { delaGothicOne } from '../fonts';
+import {
+  AcademicCapIcon,
+  ArrowLeftOnRectangleIcon,
+} from '@heroicons/react/24/solid';
 
 export default function Header() {
   return (
@@ -69,10 +73,11 @@ export default function Header() {
         />
       </div>
       <div
-        className={css({
+        className={`${css({
           gridColumn: '11/12',
           margin: 'auto',
-        })}
+          position: 'relative',
+        })} group`}
       >
         <ImageContainer size="icon">
           <Image
@@ -83,6 +88,56 @@ export default function Header() {
             alt="cairn"
           />
         </ImageContainer>
+        <div
+          className={css({
+            transition: 'all 0.3s ease-in-out',
+            opacity: { base: 0, _groupHover: 1 },
+            position: 'absolute',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bg: 'white',
+            width: 'menu.width',
+            maxHeight: 'menu.maxHeight',
+            border: 'primary',
+          })}
+        >
+          <div
+            className={css({
+              display: 'flex',
+              flexDirection: 'column',
+              rowGap: 'xs',
+            })}
+          >
+            <Link href="/background">
+              <div
+                className={css({
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  columnGap: 'xs',
+                })}
+              >
+                <AcademicCapIcon
+                  className={css({ height: 'lg', width: 'lg' })}
+                />
+                <p>経歴登録</p>
+              </div>
+            </Link>
+            <Link href="/background">
+              <div
+                className={css({
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  gap: 'xs',
+                })}
+              >
+                <ArrowLeftOnRectangleIcon
+                  className={css({ height: 'lg', width: 'lg' })}
+                />
+                <p>ログアウト</p>
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
       <div
         className={css({
