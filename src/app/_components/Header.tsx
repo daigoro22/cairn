@@ -5,15 +5,23 @@ import ImageContainer from './ImageContainer';
 import TextInput from './TextInput';
 import Button from './Button';
 import { delaGothicOne } from '../fonts';
-import { mainAreaGrid } from './styles/layout';
 
 export default function Header() {
   return (
     <header
-      className={`${css({
+      className={css({
         height: 'header',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(12,1fr)',
+        gridColumnGap: 'gridGap.main',
+        alignItems: 'center',
         bg: 'white',
-      })} ${mainAreaGrid()}`}
+        position: 'fixed',
+        zIndex: 999,
+        top: 0,
+        left: 0,
+        width: '100%',
+      })}
     >
       <Link
         href="/"
@@ -54,7 +62,7 @@ export default function Header() {
         })}
       >
         <TextInput
-          variants={{ marginX: 'none', width: 'none' }}
+          variants={{ marginX: 'none', width: 'fill' }}
           id="search"
           type="search"
           placeholder="検索"
