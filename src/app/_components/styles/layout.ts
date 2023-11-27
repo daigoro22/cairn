@@ -19,7 +19,7 @@ export const mainAreaGrid = cva({
       lg: {
         gridTemplateColumns:
           'repeat(3,minmax(0,1fr)) repeat(6,8rem) repeat(3,minmax(0,1fr))',
-        gridTemplateRows: 'repeat(10,8rem)',
+        gridTemplateRows: 'repeat(10,auto)',
         gridColumnGap: 'gridGap.lg',
         gridRowGap: 'gridGap.lg',
       },

@@ -5,12 +5,21 @@ import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 import { mainAreaGrid, subGrid } from '@/app/_components/styles/layout';
-import { css } from 'styled-system/css';
+import { css, cva } from 'styled-system/css';
 import Image from 'next/image';
 import { join } from '@/utils/panda';
 
+const h2Label = cva({
+  base: {
+    fontSize: 'lg',
+    marginLeft: 'md',
+    marginTop: 'md',
+  },
+});
+
 export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;
+
   return (
     <main className={mainAreaGrid({ grid: 'lg' })}>
       <section
@@ -43,19 +52,18 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={css({
                 gridColumn: '1/7',
-                gridRow: '1/3',
-                bg: 'blue',
+                gridRow: '1/2',
               })}
             >
-              <h2
-                className={css({
-                  fontSize: 'lg',
-                  marginLeft: 'md',
-                  marginTop: 'md',
-                })}
-              >
-                商品
-              </h2>
+              <h2 className={h2Label()}>商品</h2>
+            </div>
+            <div
+              className={css({
+                gridColumn: '1/3',
+                gridRow: '2/3',
+                marginX: 'auto',
+              })}
+            >
               <ImageContainer size="item">
                 <Image
                   src="/icon.png"
@@ -68,16 +76,32 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             </div>
             <div
               className={css({
-                gridColumn: '1/4',
-                gridRow: '3/4',
-                bg: 'blue',
+                gridColumn: '3/7',
+                gridRow: '2/3',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'lg',
               })}
-            ></div>
+            >
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <Button variant="secondary">検索</Button>
+            </div>
             <div
               className={css({
                 gridColumn: '1/4',
                 gridRow: '4/5',
                 bg: 'blue',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'lg',
               })}
             ></div>
             <div

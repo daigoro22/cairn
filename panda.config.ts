@@ -22,7 +22,7 @@ export default defineConfig({
         header: { value: '6rem' },
         icon: { value: '4rem' },
         menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
-        item: { value: '8rem' },
+        item: { value: '16rem' },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
