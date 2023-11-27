@@ -8,12 +8,14 @@ import { mainAreaGrid, subGrid } from '@/app/_components/styles/layout';
 import { css, cva } from 'styled-system/css';
 import Image from 'next/image';
 import { join } from '@/utils/panda';
+import { input, inputLabel } from '@/app/_components/styles/input';
+import RangeInput from '@/app/_components/RangeInput';
 
-const h2Label = cva({
+const gridCellFlex = cva({
   base: {
-    fontSize: 'lg',
-    marginLeft: 'md',
-    marginTop: 'md',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 'md',
   },
 });
 
@@ -53,9 +55,11 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={css({
                 gridColumn: '1/7',
                 gridRow: '1/2',
+                paddingLeft: 'md',
+                paddingTop: 'md',
               })}
             >
-              <h2 className={h2Label()}>商品</h2>
+              <h2 className={inputLabel()}>商品</h2>
             </div>
             <div
               className={css({
@@ -75,13 +79,14 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               </ImageContainer>
             </div>
             <div
-              className={css({
-                gridColumn: '3/7',
-                gridRow: '2/3',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'lg',
-              })}
+              className={join([
+                css({
+                  gridColumn: '3/7',
+                  gridRow: '2/3',
+                  gap: 'lg',
+                }),
+                gridCellFlex(),
+              ])}
             >
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -91,53 +96,43 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               <Button variant="secondary">検索</Button>
             </div>
             <div
-              className={css({
-                gridColumn: '1/4',
-                gridRow: '3/4',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'lg',
-              })}
+              className={join([
+                css({
+                  gridColumn: '1/4',
+                  gridRow: '3/4',
+                }),
+                gridCellFlex(),
+              ])}
             >
-              <h2 className={h2Label()}>総合評価</h2>
+              <InputContainer label="総合評価">
+                <RangeInput min={0} max={5} step={0.5}>
+                  {[...Array(6).keys()].map((_, i) => (
+                    <option
+                      key={`rangeOption${i}`}
+                      value={`${i}`}
+                      label={`${i}`}
+                    />
+                  ))}
+                </RangeInput>
+              </InputContainer>
             </div>
             <div
-              className={css({
-                gridColumn: '1/4',
-                gridRow: '4/5',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: 'md',
-              })}
+              className={join([
+                css({
+                  gridColumn: '1/4',
+                  gridRow: '4/5',
+                }),
+                gridCellFlex(),
+              ])}
             >
-              <input type="range" min={0} max={5} step={0.5} list="values" />
-              <datalist
-                className={css({
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                })}
-                id="values"
-              >
-                <option value="0" label="0"></option>
-                <option value="1" label="1"></option>
-                <option value="2" label="2"></option>
-                <option value="3" label="3"></option>
-                <option value="4" label="4"></option>
-                <option value="5" label="5"></option>
-              </datalist>
+              <InputContainer label="商品URL">
+                <TextInput type="url" />
+              </InputContainer>
             </div>
-            <div
-              className={css({
-                gridColumn: '4/7',
-                gridRow: '4/5',
-                bg: 'blue',
-              })}
-            ></div>
             <div
               className={css({
                 gridColumn: '1/4',
                 gridRow: '5/6',
-                bg: 'blue',
               })}
             ></div>
             <div
