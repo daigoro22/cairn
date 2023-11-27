@@ -1,14 +1,11 @@
-import Button from '@/app/_components/Button';
-import DateInput from '@/app/_components/DateInput';
 import ImageContainer from '@/app/_components/ImageContainer';
 import InputContainer from '@/app/_components/InputContainer';
-import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 import { mainAreaGrid, subGrid } from '@/app/_components/styles/_layout';
 import { css, cva } from 'styled-system/css';
 import Image from 'next/image';
 import { join } from '@/utils/panda';
-import { input, inputLabel } from '@/app/_components/styles/input';
+import { inputLabel } from '@/app/_components/styles/input';
 import RangeInput from '@/app/_components/RangeInput';
 
 const gridCellFlex = cva({
