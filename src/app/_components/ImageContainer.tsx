@@ -7,6 +7,7 @@ const styleObject = {
     size: {
       header: { width: 'header', height: 'header' },
       icon: { width: 'icon', height: 'icon' },
+      item: { width: 'item', height: 'item' },
     },
   },
 } as const;
