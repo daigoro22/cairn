@@ -22,7 +22,7 @@ export default defineConfig({
         header: { value: '6rem' },
         icon: { value: '4rem' },
         menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
-        item: { value: '16rem' },
+        item: { value: '12rem' },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
@@ -30,7 +30,7 @@ export default defineConfig({
         md: { value: '{sizes.md}' },
         lg: { value: '{sizes.lg}' },
         xl: { value: '{sizes.xl}' },
-        gridGap: { md: { value: '24px' }, lg: { value: '32px' } },
+        gridGap: { md: { value: '24px' }, lg: { value: '12px' } },
         header: { value: '{sizes.header}' },
       },
       colors: {

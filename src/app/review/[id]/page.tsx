@@ -87,23 +87,45 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
               <Button variant="secondary">検索</Button>
             </div>
             <div
               className={css({
                 gridColumn: '1/4',
-                gridRow: '4/5',
-                bg: 'blue',
+                gridRow: '3/4',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 'lg',
               })}
-            ></div>
+            >
+              <h2 className={h2Label()}>総合評価</h2>
+            </div>
+            <div
+              className={css({
+                gridColumn: '1/4',
+                gridRow: '4/5',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 'md',
+              })}
+            >
+              <input type="range" min={0} max={5} step={0.5} list="values" />
+              <datalist
+                className={css({
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                })}
+                id="values"
+              >
+                <option value="0" label="0"></option>
+                <option value="1" label="1"></option>
+                <option value="2" label="2"></option>
+                <option value="3" label="3"></option>
+                <option value="4" label="4"></option>
+                <option value="5" label="5"></option>
+              </datalist>
+            </div>
             <div
               className={css({
                 gridColumn: '4/7',
