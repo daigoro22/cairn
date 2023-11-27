@@ -21,9 +21,10 @@ export const input = cva(inputStyleObject);
 export const inputLabel = cva({
   base: {
     marginBottom: 'xs',
-    fontSize: 'md',
     boxSizing: 'border-box',
   },
+  variants: { fontSize: { md: { fontSize: 'md' }, lg: { fontSize: 'lg' } } },
+  defaultVariants: { fontSize: 'md' },
 });
 
 export const inputContainer = cva({

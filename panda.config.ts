@@ -61,7 +61,7 @@ export default defineConfig({
       },
       radii: {
         input: { value: '{sizes.sm}' },
-        card: { value: '{sizes.md}' },
+        card: { md: { value: '{sizes.md}' }, xs: { value: '{sizes.xs}' } },
       },
     },
   },
