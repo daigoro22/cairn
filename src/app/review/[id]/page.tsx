@@ -4,7 +4,7 @@ import ImageContainer from '@/app/_components/ImageContainer';
 import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
-import { mainAreaGrid, subGrid } from '@/app/_components/styles/layout';
+import { mainAreaGrid, subGrid } from '@/app/_components/styles/_layout';
 import { css, cva } from 'styled-system/css';
 import Image from 'next/image';
 import { join } from '@/utils/panda';
@@ -21,6 +21,7 @@ const gridCellFlex = cva({
 
 export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;
+  console.log(id);
 
   return (
     <main className={mainAreaGrid({ grid: 'lg' })}>

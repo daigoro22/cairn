@@ -11,7 +11,7 @@ import InputContainer from '@/app/_components/InputContainer';
 import RadioInputContainer from '@/app/_components/RadioInputContainer';
 import Button from '@/app/_components/Button';
 import { css } from 'styled-system/css';
-import { card, mainAreaGrid } from '@/app/_components/styles/layout';
+import { card, mainAreaGrid } from '@/app/_components/styles/_layout';
 import FileInput from '@/app/_components/FileInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 
