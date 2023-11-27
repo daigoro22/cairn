@@ -119,7 +119,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={join([
                 css({
-                  gridColumn: '1/4',
+                  gridColumn: '1/5',
                   gridRow: '4/5',
                 }),
                 gridCellFlex(),
@@ -130,39 +130,110 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               </InputContainer>
             </div>
             <div
-              className={css({
-                gridColumn: '1/4',
-                gridRow: '5/6',
-              })}
-            ></div>
+              className={join([
+                css({
+                  gridColumn: '5/7',
+                  gridRow: '4/5',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <InputContainer label="買った時期">
+                <DateInput />
+              </InputContainer>
+            </div>
             <div
-              className={css({
-                gridColumn: '1/4',
-                gridRow: '6/7',
-                bg: 'blue',
-              })}
-            ></div>
+              className={join([
+                css({
+                  gridColumn: '1/5',
+                  gridRow: '5/6',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <InputContainer label="買った目的">
+                <TextInput type="text" />
+              </InputContainer>
+            </div>
             <div
-              className={css({
-                gridColumn: '4/7',
-                gridRow: '6/7',
-                bg: 'blue',
-              })}
-            ></div>
+              className={join([
+                css({
+                  gridColumn: '1/3',
+                  gridRow: '6/7',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <InputContainer label="目的の達成期間">
+                <TextInput type="number" step={1} />
+              </InputContainer>
+            </div>
             <div
-              className={css({
-                gridColumn: '1/7',
-                gridRow: '7/9',
-                bg: 'blue',
-              })}
-            ></div>
+              className={join([
+                css({
+                  gridColumn: '3/4',
+                  gridRow: '6/7',
+                  justifyContent: 'flex-end',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <p className={css({ fontSize: 'md' })}>日</p>
+            </div>
             <div
-              className={css({
-                gridColumn: '1/4',
-                gridRow: '9/10',
-                bg: 'blue',
-              })}
-            ></div>
+              className={join([
+                css({
+                  gridColumn: '4/6',
+                  gridRow: '6/7',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <InputContainer label="現在の目的の達成度合い">
+                <TextInput type="number" min={0} max={100} step={1} />
+              </InputContainer>
+            </div>
+            <div
+              className={join([
+                css({
+                  gridColumn: '6/7',
+                  gridRow: '6/7',
+                  justifyContent: 'flex-end',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <p className={css({ fontSize: 'md' })}>%</p>
+            </div>
+            <div
+              className={join([
+                css({
+                  gridColumn: '1/6',
+                  gridRow: '7/9',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <InputContainer label="レビュー">
+                <textarea
+                  className={input({ height: 'block' })}
+                  rows={10}
+                  cols={50}
+                />
+              </InputContainer>
+            </div>
+
+            <div
+              className={join([
+                css({
+                  gridColumn: '1/4',
+                  gridRow: '9/10',
+                }),
+                gridCellFlex(),
+              ])}
+            >
+              <Button variant="primary">投稿</Button>
+            </div>
           </form>
         </div>
       </section>

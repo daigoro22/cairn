@@ -5,7 +5,7 @@ import { input } from './styles/input';
 
 type TypeAttribute = Extract<
   Pick<InputHTMLAttributes<HTMLInputElement>, 'type'>['type'],
-  'email' | 'password' | 'search' | 'tel' | 'text' | 'url'
+  'email' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'number'
 >;
 type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
   type?: TypeAttribute;
