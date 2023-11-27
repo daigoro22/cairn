@@ -6,7 +6,7 @@ export default function InputContainer({
   children,
 }: {
   label: string;
-  children: ReactElement<HTMLInputElement>;
+  children: ReactElement<HTMLInputElement> | string;
 }) {
   return (
     <div className={inputContainer()}>
