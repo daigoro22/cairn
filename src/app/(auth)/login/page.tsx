@@ -4,7 +4,7 @@ import Button from '@/app/_components/Button';
 import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
-import { card, mainAreaGrid } from '@/app/_components/styles/layout';
+import { card, mainAreaGrid } from '@/app/_components/styles/_layout';
 import { supabase } from '@/utils/supabase';
 import { useState } from 'react';
 import { css } from 'styled-system/css';

@@ -20,7 +20,7 @@ export default function Header() {
         height: 'header',
         display: 'grid',
         gridTemplateColumns: 'repeat(12,1fr)',
-        gridColumnGap: 'gridGap.main',
+        gridColumnGap: 'gridGap.md',
         alignItems: 'center',
         bg: 'white',
         position: 'fixed',

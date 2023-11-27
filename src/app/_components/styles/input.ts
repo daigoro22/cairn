@@ -12,8 +12,9 @@ export const inputStyleObject = {
   variants: {
     marginX: { xs: { marginLeft: 'xs', marginRight: 'xs' }, none: {} },
     width: { fill: { width: '100%' }, none: {} },
+    height: { inline: { height: 'xl' }, block: { height: '10rem' } },
   },
-  defaultVariants: { marginX: 'xs', width: 'none' },
+  defaultVariants: { marginX: 'xs', width: 'none', height: 'inline' },
 } as const;
 export const input = cva(inputStyleObject);
 

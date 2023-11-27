@@ -17,17 +17,8 @@ export default function RootLayout({
     <html lang="en" className={bizUDPGothic.className}>
       <body className={css({ bg: 'primary.bg' })}>
         <Header />
-        <div
-          className={css({
-            display: 'grid',
-            gridTemplateColumns:
-              'repeat(4,minmax(0,1fr)) repeat(4,8rem) repeat(4,minmax(0,1fr))',
-            gridColumnGap: 'gridGap.main',
-            marginTop: 'header',
-          })}
-        >
-          {children}
-        </div>
+        <div className={css({ marginTop: 'header' })}> </div>
+        {children}
       </body>
     </html>
   );
