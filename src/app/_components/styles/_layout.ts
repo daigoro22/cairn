@@ -43,6 +43,6 @@ export const card = cva({
     rowGap: '1rem',
     bg: 'white',
     padding: 'xl',
-    borderRadius: 'card',
+    borderRadius: 'card.md',
   },
 });

@@ -39,7 +39,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               gridColumn: '1/7',
               gridRow: '2/13',
               bg: 'white',
-              borderRadius: 'card',
+              borderRadius: 'card.md',
             }),
           ])}
         >
