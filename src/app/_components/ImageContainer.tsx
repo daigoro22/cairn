@@ -6,8 +6,13 @@ const styleObject = {
   variants: {
     size: {
       header: { width: 'header', height: 'header' },
-      icon: { width: 'icon', height: 'icon' },
-      item: { width: 'item', height: 'item' },
+      'icon.menu': { width: 'icon.menu', height: 'icon.menu' },
+      'icon.reviewCard': {
+        width: 'icon.reviewCard',
+        height: 'icon.reviewCard',
+      },
+      'item.review': { width: 'item.review', height: 'item.review' },
+      'item.top': { width: 'item.top', height: 'item.top' },
     },
   },
 } as const;

@@ -20,9 +20,9 @@ export default defineConfig({
         xl: { value: '2rem' },
         border: { input: { value: '1px' } },
         header: { value: '6rem' },
-        icon: { value: '4rem' },
+        icon: { menu: { value: '4rem' }, reviewCard: { value: '2rem' } },
         menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
-        item: { value: '12rem' },
+        item: { review: { value: '12rem' }, top: { value: '100%' } },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
@@ -30,7 +30,11 @@ export default defineConfig({
         md: { value: '{sizes.md}' },
         lg: { value: '{sizes.lg}' },
         xl: { value: '{sizes.xl}' },
-        gridGap: { md: { value: '24px' }, lg: { value: '12px' } },
+        gridGap: {
+          sm: { value: '5px' },
+          md: { value: '24px' },
+          lg: { value: '12px' },
+        },
         header: { value: '{sizes.header}' },
       },
       colors: {
