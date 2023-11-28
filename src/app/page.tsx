@@ -9,7 +9,7 @@ export default function Home() {
       <section
         className={join([
           subGrid(),
-          css({ gridColumn: '3/11', gridRow: '1/13' }),
+          css({ gridColumn: '3/11', gridRow: '2/13' }),
         ])}
       >
         <div
