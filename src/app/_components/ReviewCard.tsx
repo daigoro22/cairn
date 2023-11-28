@@ -1,14 +1,6 @@
-import { css, cva } from 'styled-system/css';
+import { css } from 'styled-system/css';
 import ImageContainer from './ImageContainer';
 import Image from 'next/image';
-
-const gridCellFlex = cva({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 'md',
-  },
-});
 
 export default function ReviewCard() {
   return (
