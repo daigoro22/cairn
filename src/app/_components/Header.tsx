@@ -82,7 +82,7 @@ export default function Header() {
           position: 'relative',
         })} group`}
       >
-        <ImageContainer size="icon">
+        <ImageContainer size="icon.menu">
           <Image
             src="/icon.png"
             sizes="100vw"

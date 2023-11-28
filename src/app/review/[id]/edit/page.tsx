@@ -69,7 +69,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                 marginX: 'auto',
               })}
             >
-              <ImageContainer size="item">
+              <ImageContainer size="item.review">
                 <Image
                   src="/icon.png"
                   sizes="100vw"
