@@ -1,6 +1,6 @@
 'use client';
 
-import { supabase } from '@/utils/supabase';
+import type { FormEvent } from 'react';
 import { useState } from 'react';
 import TextInput from '../../_components/TextInput';
 import React from 'react';
@@ -15,9 +15,23 @@ import { card, mainAreaGrid } from '@/app/_components/styles/_layout';
 import FileInput from '@/app/_components/FileInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 
-export default function Register() {
+export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+
+    fetch('/api/auth/sign-up', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(console.log)
+      .catch(console.error);
+  };
 
   return (
     <main className={mainAreaGrid()}>
@@ -27,7 +41,7 @@ export default function Register() {
         })}
       >
         <h1 className={mainAreaLabel()}>ユーザ登録</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={card()}>
             <InputContainer label="名前">
               <TextInput
@@ -62,16 +76,7 @@ export default function Register() {
               <RadioInput id="female" name="sex" value="female" label="女性" />
             </RadioInputContainer>
             <CheckBoxInput name="confirmation" label="利用規約への同意" />
-            <Button
-              onClick={() => {
-                supabase.auth
-                  .signUp({ email, password })
-                  .then(console.log)
-                  .catch(console.error);
-              }}
-            >
-              登録
-            </Button>
+            <Button type="submit">登録</Button>
           </div>
         </form>
       </section>
