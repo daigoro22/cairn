@@ -10,6 +10,11 @@ export async function POST(request: NextRequest) {
 
   const email = formData.get('email')?.toString();
   const password = formData.get('password')?.toString();
+  const name = formData.get('name')?.toString();
+  const profileImageURL = formData.get('profileImageURL')?.toString();
+  const dateOfBirth = formData.get('dateOfBirth')?.toString();
+  const gender = formData.get('gender')?.toString();
+  const termsAgreed = formData.get('termsAgreed')?.toString();
 
   const cookieStore = cookies();
   const supabase = createServerClient(
@@ -32,21 +37,39 @@ export async function POST(request: NextRequest) {
 
   if (!email || !password) {
     return NextResponse.json(
-      { error: 'email or password is missing' },
+      { error: 'メールアドレスもしくはパスワードを入力してください' },
       { status: 400 },
     );
   }
 
-  const { data, error } = await supabase.rpc('hello_world');
-  console.log(data);
+  if (termsAgreed !== 'true') {
+    return NextResponse.json(
+      { error: '利用規約への同意を行ってください' },
+      { status: 400 },
+    );
+  }
 
-  await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       emailRedirectTo: `${requestUrl.origin}/api/auth/callback`,
+      data: {
+        name,
+        profileImageURL,
+        dateOfBirth,
+        gender,
+        termsAgreed,
+      },
     },
   });
+
+  if (error) {
+    return NextResponse.json(
+      { error: 'internal error' },
+      { status: error.status },
+    );
+  }
 
   return NextResponse.redirect(requestUrl.origin, {
     status: 301,

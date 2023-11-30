@@ -18,12 +18,18 @@ import { mainAreaLabel } from '@/app/_components/styles/display';
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
+    formData.append('name', name);
+    formData.append('profileImageURL', 'https://google.com');
+    formData.append('dateOfBirth', '2023/11/29');
+    formData.append('gender', '男性');
+    formData.append('termsAgreed', 'false');
 
     fetch('/api/auth/sign-up', {
       method: 'POST',
@@ -47,6 +53,7 @@ export default function SignUp() {
               <TextInput
                 id="name"
                 variants={{ marginX: 'none', width: 'fill' }}
+                onChange={(e) => setName(e.target.value)}
               />
             </InputContainer>
             <InputContainer label="プロフィール画像">
