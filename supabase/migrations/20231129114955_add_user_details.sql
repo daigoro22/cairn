@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user_details;
 CREATE TABLE IF NOT EXISTS user_details (
     id uuid references auth.users on delete cascade not null primary key,
     name VARCHAR(255),
-    profile_icon_url VARCHAR(255),
+    profile_icon_path VARCHAR(255),
     date_of_birth DATE,
     gender VARCHAR(50),
     terms_agreed BOOLEAN
@@ -19,10 +19,10 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.user_details (id, name, profile_icon_url, date_of_birth, gender,terms_agreed)
+  insert into public.user_details (id, name, profile_icon_path, date_of_birth, gender,terms_agreed)
   values (new.id,
   new.raw_user_meta_data->>'name',
-  new.raw_user_meta_data->>'profileImageURL',
+  new.raw_user_meta_data->>'profileIconPath',
   TO_DATE(new.raw_user_meta_data->>'dateOfBirth','YYYY/MM/DD'),
   new.raw_user_meta_data->>'gender',
   CAST(new.raw_user_meta_data->>'termsAgreed' AS BOOLEAN));

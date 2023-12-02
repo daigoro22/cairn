@@ -19,6 +19,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [file, setFile] = useState<File>();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,10 +27,11 @@ export default function SignUp() {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('name', name);
+    file && formData.append('file', file);
     formData.append('profileImageURL', 'https://google.com');
     formData.append('dateOfBirth', '2023/11/29');
     formData.append('gender', '男性');
-    formData.append('termsAgreed', 'false');
+    formData.append('termsAgreed', 'true');
 
     fetch('/api/auth/sign-up', {
       method: 'POST',
@@ -57,7 +59,13 @@ export default function SignUp() {
               />
             </InputContainer>
             <InputContainer label="プロフィール画像">
-              <FileInput id="profileImage" />
+              <FileInput
+                id="profileImage"
+                onChange={(e) => {
+                  const f = e.currentTarget.files?.item(0);
+                  f && setFile(f);
+                }}
+              />
             </InputContainer>
             <InputContainer label="メールアドレス">
               <TextInput

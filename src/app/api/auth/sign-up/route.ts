@@ -3,6 +3,7 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
+import { createHash } from 'crypto';
 
 export async function POST(request: NextRequest) {
   const requestUrl = new URL(request.url);
@@ -11,10 +12,10 @@ export async function POST(request: NextRequest) {
   const email = formData.get('email')?.toString();
   const password = formData.get('password')?.toString();
   const name = formData.get('name')?.toString();
-  const profileImageURL = formData.get('profileImageURL')?.toString();
   const dateOfBirth = formData.get('dateOfBirth')?.toString();
   const gender = formData.get('gender')?.toString();
   const termsAgreed = formData.get('termsAgreed')?.toString();
+  const file = formData.get('file') as File;
 
   const cookieStore = cookies();
   const supabase = createServerClient(
@@ -49,6 +50,14 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const profileIconPath = createHash('sha256')
+    .update(`${name}/${file.name}`)
+    .digest('hex');
+
+  const { error: uploadError, data } = await supabase.storage
+    .from('profile_icons')
+    .upload(profileIconPath, file);
+
   const { error } = await supabase.auth.signUp({
     email,
     password,
@@ -56,7 +65,7 @@ export async function POST(request: NextRequest) {
       emailRedirectTo: `${requestUrl.origin}/api/auth/callback`,
       data: {
         name,
-        profileImageURL,
+        profileIconPath,
         dateOfBirth,
         gender,
         termsAgreed,
