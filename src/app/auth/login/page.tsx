@@ -9,8 +9,8 @@ import { useState } from 'react';
 import { css } from 'styled-system/css';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [_, setEmail] = useState('');
+  const [__, setPassword] = useState('');
 
   return (
     <main className={mainAreaGrid()}>

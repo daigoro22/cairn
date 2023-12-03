@@ -19,10 +19,12 @@ export async function GET(request: NextRequest) {
             return cookieStore.get(name)?.value;
           },
           set(name: string, value: string, options: CookieOptions) {
-            cookieStore.set({ name, value, ...options });
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            cookieStore.set(name, value, options);
           },
           remove(name: string, options: CookieOptions) {
-            cookieStore.set({ name, value: '', ...options });
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            cookieStore.set(name, '', options);
           },
         },
       },
