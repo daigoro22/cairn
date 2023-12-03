@@ -56,14 +56,14 @@ export default function SignUp() {
         <h1 className={mainAreaLabel()}>ユーザ登録</h1>
         <form onSubmit={onSubmit}>
           <div className={card()}>
-            <InputContainer label="名前">
+            <InputContainer label="名前" error={errors.name}>
               <TextInput
                 id="name"
                 variants={{ marginX: 'none', width: 'fill' }}
                 {...register('name')}
               />
             </InputContainer>
-            <InputContainer label="プロフィール画像">
+            <InputContainer label="プロフィール画像" error={errors.profileIcon}>
               <Controller
                 control={control}
                 name="profileIcon"
@@ -80,7 +80,7 @@ export default function SignUp() {
               />
             </InputContainer>
 
-            <InputContainer label="メールアドレス">
+            <InputContainer label="メールアドレス" error={errors.email}>
               <TextInput
                 id="email"
                 type="email"
@@ -88,7 +88,7 @@ export default function SignUp() {
                 {...register('email')}
               />
             </InputContainer>
-            <InputContainer label="パスワード">
+            <InputContainer label="パスワード" error={errors.password}>
               <TextInput
                 id="password"
                 type="password"
@@ -96,15 +96,16 @@ export default function SignUp() {
                 {...register('password')}
               />
             </InputContainer>
-            <InputContainer label="生年月日">
+            <InputContainer label="生年月日" error={errors.dateOfBirth}>
               <DateInput id="dateOfBirth" {...register('dateOfBirth')} />
             </InputContainer>
-            <RadioInputContainer>
+            <RadioInputContainer error={errors.gender}>
               <RadioInput value="male" label="男性" {...register('gender')} />
               <RadioInput value="female" label="女性" {...register('gender')} />
             </RadioInputContainer>
             <CheckBoxInput
               label="利用規約への同意"
+              error={errors.termsAgreed}
               {...register('termsAgreed')}
             />
             <Button type="submit">登録</Button>
