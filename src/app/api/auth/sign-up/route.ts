@@ -10,7 +10,9 @@ export async function POST(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const formData = await request.formData();
 
-  const parsedFormData = signUpApiSchema.safeParse(formData);
+  const parsedFormData = signUpApiSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
 
   if (!parsedFormData.success) {
     return NextResponse.json(

@@ -16,6 +16,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { SignUpApiSchema } from '@/schemas/sign-up';
 import { signUpApiSchema } from '@/schemas/sign-up';
+import { ACCEPT_IMAGE_TYPES } from '@/constants/profileIcon';
 
 export default function SignUp() {
   const {
@@ -26,6 +27,7 @@ export default function SignUp() {
   } = useForm<SignUpApiSchema>({
     resolver: zodResolver(signUpApiSchema),
     mode: 'onSubmit',
+    defaultValues: { gender: 'male' },
   });
 
   const onSubmit = handleSubmit(async (data) => {
@@ -71,6 +73,7 @@ export default function SignUp() {
                 render={({ field: { onChange } }) => (
                   <FileInput
                     id="profileImage"
+                    accept={ACCEPT_IMAGE_TYPES.join(',')}
                     onChange={(e) => {
                       const f = e.currentTarget.files?.item(0);
                       f && onChange(f);
