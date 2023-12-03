@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   const dateOfBirth = formData.get('dateOfBirth')?.toString();
   const gender = formData.get('gender')?.toString();
   const termsAgreed = formData.get('termsAgreed')?.toString();
-  const file = formData.get('file') as File;
+  const file = formData.get('profileIcon') as File;
 
   const cookieStore = cookies();
   const supabase = createServerClient(
