@@ -53,7 +53,6 @@ export default function SignUp() {
           gridColumn: '5/9',
         })}
       >
-        {errors.dateOfBirth?.message}
         <h1 className={mainAreaLabel()}>ユーザ登録</h1>
         <form onSubmit={onSubmit}>
           <div className={card()}>

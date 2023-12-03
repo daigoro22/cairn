@@ -10,11 +10,11 @@ export const signUpApiSchema = z.object({
   profileIcon: z
     .custom<File>()
     .refine(
-      (file) => file.size <= PROFILE_ICON_MAX_FILE_SIZE,
+      (file) => file && file.size <= PROFILE_ICON_MAX_FILE_SIZE,
       `ファイルサイズが大きすぎます。${PROFILE_ICON_MAX_FILE_SIZE_MB}MB以下のファイルを選択してください`,
     )
     .refine(
-      (file) => ACCEPT_IMAGE_TYPES.includes(file.type),
+      (file) => file && ACCEPT_IMAGE_TYPES.includes(file.type),
       'jepg, jpg, png のいずれかの画像を選択してください',
     ),
   email: z.string().email(),
