@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes } from 'react';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { inputStyleObject } from './styles/input';
 import { input } from './styles/input';
 
@@ -14,10 +14,11 @@ type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
   };
 };
 
-export default function TextInput({
-  type = 'text',
-  variants = {},
-  ...args
-}: Props) {
-  return <input className={input(variants)} type={type} {...args} />;
-}
+const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
+  { type = 'text', variants = {}, ...args },
+  ref,
+) {
+  return <input className={input(variants)} type={type} {...args} ref={ref} />;
+});
+
+export default TextInput;
