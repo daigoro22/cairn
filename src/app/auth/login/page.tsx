@@ -5,13 +5,12 @@ import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 import { card, mainAreaGrid } from '@/app/_components/styles/_layout';
-import { supabase } from '@/utils/supabase';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
 
-export default function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function Login() {
+  const [_, setEmail] = useState('');
+  const [__, setPassword] = useState('');
 
   return (
     <main className={mainAreaGrid()}>
@@ -40,12 +39,12 @@ export default function Register() {
               />
             </InputContainer>
             <Button
-              onClick={() => {
-                supabase.auth
-                  .signInWithPassword({ email, password })
-                  .then(console.log)
-                  .catch(console.error);
-              }}
+            // onClick={() => {
+            //   supabase.auth
+            //     .signInWithPassword({ email, password })
+            //     .then(console.log)
+            //     .catch(console.error);
+            // }}
             >
               ログイン
             </Button>

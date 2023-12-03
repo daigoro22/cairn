@@ -58,6 +58,7 @@ export default defineConfig({
         },
       },
       fontSizes: {
+        xs: { value: '{sizes.xs}' },
         sm: { value: '{sizes.sm}' },
         md: { value: '{sizes.md}' },
         lg: { value: '{sizes.lg}' },

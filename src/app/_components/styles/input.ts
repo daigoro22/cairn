@@ -20,7 +20,6 @@ export const input = cva(inputStyleObject);
 
 export const inputLabel = cva({
   base: {
-    marginBottom: 'xs',
     boxSizing: 'border-box',
   },
   variants: { fontSize: { md: { fontSize: 'md' }, lg: { fontSize: 'lg' } } },
@@ -28,7 +27,12 @@ export const inputLabel = cva({
 });
 
 export const inputContainer = cva({
-  base: { display: 'flex', flexDirection: 'column' },
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 'xs',
+    marginBottom: 'md',
+  },
 });
 
 export const button = cva({
