@@ -17,8 +17,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { SignUpApiSchema } from '@/schemas/sign-up';
 import { signUpApiSchema } from '@/schemas/sign-up';
 import { ACCEPT_IMAGE_TYPES } from '@/constants/profileIcon';
+import { useRouter } from 'next/navigation';
 
 export default function SignUp() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -42,10 +45,16 @@ export default function SignUp() {
       }
     }
 
-    await fetch('/api/auth/sign-up', {
+    const res = await fetch('/api/auth/sign-up', {
       method: 'POST',
       body: formData,
     });
+
+    if (res.ok) {
+      router.replace('/account-needs-confirmation');
+    } else {
+      alert('サインアップ処理に失敗しました');
+    }
   });
 
   return (
@@ -65,7 +74,10 @@ export default function SignUp() {
                 {...register('name')}
               />
             </InputContainer>
-            <InputContainer label="プロフィール画像" error={errors.profileIcon}>
+            <InputContainer
+              label="プロフィールアイコン"
+              error={errors.profileIcon}
+            >
               <Controller
                 control={control}
                 name="profileIcon"

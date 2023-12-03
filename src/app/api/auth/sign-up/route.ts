@@ -65,12 +65,19 @@ export async function POST(request: NextRequest) {
   }
 
   const profileIconPath = createHash('sha256')
-    .update(`${name}/${profileIcon.name}`)
+    .update(`${email}}/${profileIcon.name}`)
     .digest('hex');
 
   const { error: uploadError, data } = await supabase.storage
     .from('profile_icons')
     .upload(profileIconPath, profileIcon);
+
+  if (uploadError) {
+    return NextResponse.json(
+      { error: 'プロフィールアイコンのアップロードに失敗しました' },
+      { status: 500 },
+    );
+  }
 
   const { error } = await supabase.auth.signUp({
     email,
@@ -89,12 +96,12 @@ export async function POST(request: NextRequest) {
 
   if (error) {
     return NextResponse.json(
-      { error: 'internal error' },
+      { error: 'サインアップ処理に失敗しました' },
       { status: error.status },
     );
   }
-
-  return NextResponse.redirect(requestUrl.origin, {
-    status: 301,
-  });
+  return NextResponse.json(
+    { message: 'サインアップに成功しました' },
+    { status: 200 },
+  );
 }
