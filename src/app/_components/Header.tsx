@@ -108,15 +108,18 @@ export default function Header() {
           position: 'relative',
         })} group`}
       >
-        <ImageContainer size="icon.menu">
-          <Image
-            src={profileIconUrl}
-            sizes="100vw"
-            fill
-            objectFit="cover"
-            alt="cairn"
-          />
-        </ImageContainer>
+        {profileIconUrl && (
+          <ImageContainer size="icon.menu">
+            <Image
+              src={profileIconUrl}
+              sizes="100vw"
+              fill
+              objectFit="cover"
+              alt="cairn"
+            />
+          </ImageContainer>
+        )}
+
         <FloatMenu>
           <Link href="/background">
             <FloatMenuItem
