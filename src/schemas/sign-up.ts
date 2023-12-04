@@ -3,17 +3,8 @@ import {
   PROFILE_ICON_MAX_FILE_SIZE,
   PROFILE_ICON_MAX_FILE_SIZE_MB,
 } from '@/constants/profileIcon';
-import { isValid } from 'date-fns';
 import { z } from 'zod';
-
-export const emailZodObject = z
-  .string()
-  .email('メールアドレスの形式で入力を行ってください');
-
-export const passwordZodObject = z
-  .string()
-  .min(12, 'パスワードは12文字以上にしてください')
-  .max(100, 'パスワードは100文字以下にしてください');
+import { dateZodObject, emailZodObject, passwordZodObject } from './common';
 
 export const signUpApiSchema = z.object({
   name: z
@@ -33,13 +24,7 @@ export const signUpApiSchema = z.object({
     ),
   email: emailZodObject,
   password: passwordZodObject,
-  dateOfBirth: z
-    .string({
-      required_error: '日付を入力してください',
-      invalid_type_error: '日付を入力してください',
-    })
-    .refine((date) => isValid(new Date(date)), '日付の形式が間違っています')
-    .transform((date) => new Date(date)),
+  dateOfBirth: dateZodObject,
   gender: z
     .string({ invalid_type_error: '性別を入力してください' })
     .min(1)
