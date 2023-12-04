@@ -1,5 +1,8 @@
 import type { CookieOptions } from '@supabase/ssr';
-import { createServerClient } from '@supabase/ssr';
+import {
+  createBrowserClient as _createBrowserClient,
+  createServerClient,
+} from '@supabase/ssr';
 import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 export const createRouterClient = (cookieStore: ReadonlyRequestCookies) =>
@@ -24,3 +27,9 @@ const routerCookie = (cookieStore: ReadonlyRequestCookies) => ({
     cookieStore.set(name, '', options);
   },
 });
+
+export const createBrowserClient = () =>
+  _createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
