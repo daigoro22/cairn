@@ -134,7 +134,7 @@ export default function Header() {
             />
           </ImageContainer>
           <FloatMenu>
-            <Link href="/background">
+            <Link href="/background/edit">
               <FloatMenuItem
                 icon={<AcademicCapIcon className={menuIcon()} />}
                 label="経歴登録"
