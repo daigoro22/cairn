@@ -1,9 +1,14 @@
+'use client';
+
 import { css, cva } from 'styled-system/css';
 import { inputLabel } from './styles/input';
 import Button from './Button';
 import { join } from '@/utils/panda';
 import InputContainer from './InputContainer';
 import DateInput from './DateInput';
+import { useFormContext } from 'react-hook-form';
+import type { BackgroundEditApiSchema } from '@/schemas/background';
+import TextInput from './TextInput';
 
 const gridCellFlex = cva({
   base: {
@@ -13,7 +18,15 @@ const gridCellFlex = cva({
   },
 });
 
-export default function BackGroundInput({ index }: { index: number }) {
+export default function BackGroundInput({
+  index,
+  onRemove,
+}: {
+  index: number;
+  onRemove: () => void;
+}) {
+  const { register } = useFormContext<BackgroundEditApiSchema>();
+
   return (
     <div
       className={css({
@@ -34,16 +47,19 @@ export default function BackGroundInput({ index }: { index: number }) {
           paddingTop: 'md',
         })}
       >
-        <h2 className={inputLabel({ fontSize: 'lg' })}>経歴{index}</h2>
+        <h2 className={inputLabel({ fontSize: 'lg' })}>経歴{index + 1}</h2>
       </div>
       <div
         className={css({
           gridColumn: '6/7',
           gridRow: '1/2',
           paddingTop: 'md',
+          paddingRight: 'md',
         })}
       >
-        <Button variant="tertiary">削除</Button>
+        <Button variant="tertiary" onClick={() => onRemove()}>
+          削除
+        </Button>
       </div>
 
       <div
@@ -64,8 +80,8 @@ export default function BackGroundInput({ index }: { index: number }) {
               alignItems: 'flex-end',
             })}
           >
-            <p>豊橋技術科学大学</p>
-            <Button variant="secondary">検索</Button>
+            <TextInput {...register(`items.${index}.organizationName`)} />
+            {/* <Button variant="secondary">検索</Button> */}
           </div>
         </InputContainer>
       </div>
@@ -85,9 +101,9 @@ export default function BackGroundInput({ index }: { index: number }) {
               gap: 'md',
             })}
           >
-            <DateInput />
+            <DateInput {...register(`items.${index}.startDate`)} />
             <p>〜</p>
-            <DateInput />
+            <DateInput {...register(`items.${index}.endDate`)} />
           </div>
         </InputContainer>
       </div>
