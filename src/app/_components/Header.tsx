@@ -14,23 +14,25 @@ import {
 import FloatMenu from './FloatMenu';
 import FloatMenuItem from './FloatMenuItem';
 import { menuIcon } from './styles/display';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createBrowserClient } from '@/utils/supabase';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [profileIconUrl, setProfileIconUrl] = useState('');
+  const supabase = createBrowserClient();
+  const router = useRouter();
 
   useEffect(() => {
-    const supabase = createBrowserClient();
     void (async () => {
       const {
-        data: { session },
-      } = await supabase.auth.getSession();
+        data: { user },
+      } = await supabase.auth.getUser();
       const key =
-        session?.user?.user_metadata &&
-        'profileIconPath' in session.user.user_metadata &&
-        typeof session.user.user_metadata['profileIconPath'] === 'string'
-          ? session.user.user_metadata['profileIconPath']
+        user?.user_metadata &&
+        'profileIconPath' in user.user_metadata &&
+        typeof user.user_metadata['profileIconPath'] === 'string'
+          ? user.user_metadata['profileIconPath']
           : '';
       const { data } = await supabase.storage
         .from('profile_icons')
@@ -38,7 +40,20 @@ export default function Header() {
 
       setProfileIconUrl(data?.signedUrl ?? '');
     })();
-  }, []);
+  }, [supabase.auth, supabase.storage]);
+
+  const onLogout = useCallback(() => {
+    setProfileIconUrl('');
+    supabase.auth
+      .signOut()
+      .then(({ error }) => {
+        console.log(error);
+        if (!error) {
+          router.push('/auth/login');
+        }
+      })
+      .catch(console.error);
+  }, [router, supabase.auth]);
 
   return (
     <header
@@ -101,14 +116,14 @@ export default function Header() {
           placeholder="検索"
         />
       </div>
-      <div
-        className={`${css({
-          gridColumn: '11/12',
-          margin: 'auto',
-          position: 'relative',
-        })} group`}
-      >
-        {profileIconUrl && (
+      {profileIconUrl && (
+        <div
+          className={`${css({
+            gridColumn: '11/12',
+            margin: 'auto',
+            position: 'relative',
+          })} group`}
+        >
           <ImageContainer size="icon.menu">
             <Image
               src={profileIconUrl}
@@ -118,23 +133,22 @@ export default function Header() {
               alt="cairn"
             />
           </ImageContainer>
-        )}
-
-        <FloatMenu>
-          <Link href="/background">
-            <FloatMenuItem
-              icon={<AcademicCapIcon className={menuIcon()} />}
-              label="経歴登録"
-            ></FloatMenuItem>
-          </Link>
-          <button>
-            <FloatMenuItem
-              icon={<ArrowLeftOnRectangleIcon className={menuIcon()} />}
-              label="ログアウト"
-            />
-          </button>
-        </FloatMenu>
-      </div>
+          <FloatMenu>
+            <Link href="/background">
+              <FloatMenuItem
+                icon={<AcademicCapIcon className={menuIcon()} />}
+                label="経歴登録"
+              />
+            </Link>
+            <button type="button" onClick={onLogout}>
+              <FloatMenuItem
+                icon={<ArrowLeftOnRectangleIcon className={menuIcon()} />}
+                label="ログアウト"
+              />
+            </button>
+          </FloatMenu>
+        </div>
+      )}
       <div
         className={css({
           gridColumn: '12/13',

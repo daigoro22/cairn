@@ -30,7 +30,7 @@ export default function Login() {
     });
 
     if (res.ok) {
-      router.replace('/');
+      router.push('/');
     } else {
       alert('ログイン処理に失敗しました');
     }
