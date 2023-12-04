@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { dateZodObject } from './common';
 
 export const backgroundEditApiSchema = z.object({
+  id: z.string().uuid().nullish(),
   name: z
     .string()
     .min(1, '名前を入力してください')
