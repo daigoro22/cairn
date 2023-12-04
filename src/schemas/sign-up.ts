@@ -6,6 +6,15 @@ import {
 import { isValid } from 'date-fns';
 import { z } from 'zod';
 
+export const emailZodObject = z
+  .string()
+  .email('メールアドレスの形式で入力を行ってください');
+
+export const passwordZodObject = z
+  .string()
+  .min(12, 'パスワードは12文字以上にしてください')
+  .max(100, 'パスワードは100文字以下にしてください');
+
 export const signUpApiSchema = z.object({
   name: z
     .string()
@@ -22,11 +31,8 @@ export const signUpApiSchema = z.object({
       (file) => !file || ACCEPT_IMAGE_TYPES.includes(file.type),
       'jepg, jpg, png のいずれかの画像を選択してください',
     ),
-  email: z.string().email('メールアドレスの形式で入力を行ってください'),
-  password: z
-    .string()
-    .min(12, 'パスワードは12文字以上に設定してください')
-    .max(100, 'パスワードは100文字以下になるように設定してください'),
+  email: emailZodObject,
+  password: passwordZodObject,
   dateOfBirth: z
     .string({
       required_error: '日付を入力してください',
