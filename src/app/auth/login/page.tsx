@@ -5,12 +5,36 @@ import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 import { card, mainAreaGrid } from '@/app/_components/styles/_layout';
-import { useState } from 'react';
 import { css } from 'styled-system/css';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { LoginApiSchema } from '@/schemas/login';
+import { loginApiSchema } from '@/schemas/login';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
-  const [_, setEmail] = useState('');
-  const [__, setPassword] = useState('');
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginApiSchema>({
+    resolver: zodResolver(loginApiSchema),
+    mode: 'onSubmit',
+  });
+
+  const onSubmit = handleSubmit(async (data) => {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+
+    if (res.ok) {
+      router.replace('/');
+    } else {
+      alert('ログイン処理に失敗しました');
+    }
+  });
 
   return (
     <main className={mainAreaGrid()}>
@@ -20,34 +44,25 @@ export default function Login() {
         })}
       >
         <h1 className={mainAreaLabel()}>ログイン</h1>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className={card()}>
-            <InputContainer label="メールアドレス">
+            <InputContainer label="メールアドレス" error={errors.email}>
               <TextInput
                 id="email"
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
                 variants={{ marginX: 'none', width: 'fill' }}
+                {...register('email')}
               />
             </InputContainer>
-            <InputContainer label="パスワード">
+            <InputContainer label="パスワード" error={errors.password}>
               <TextInput
                 id="password"
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
                 variants={{ marginX: 'none', width: 'fill' }}
+                {...register('password')}
               />
             </InputContainer>
-            <Button
-            // onClick={() => {
-            //   supabase.auth
-            //     .signInWithPassword({ email, password })
-            //     .then(console.log)
-            //     .catch(console.error);
-            // }}
-            >
-              ログイン
-            </Button>
+            <Button type="submit">ログイン</Button>
           </div>
         </form>
       </section>
