@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { css } from 'styled-system/css';
@@ -12,8 +14,32 @@ import {
 import FloatMenu from './FloatMenu';
 import FloatMenuItem from './FloatMenuItem';
 import { menuIcon } from './styles/display';
+import { useEffect, useState } from 'react';
+import { createBrowserClient } from '@/utils/supabase';
 
 export default function Header() {
+  const [profileIconUrl, setProfileIconUrl] = useState('');
+
+  useEffect(() => {
+    const supabase = createBrowserClient();
+    void (async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const key =
+        session?.user?.user_metadata &&
+        'profileIconPath' in session.user.user_metadata &&
+        typeof session.user.user_metadata['profileIconPath'] === 'string'
+          ? session.user.user_metadata['profileIconPath']
+          : '';
+      const { data } = await supabase.storage
+        .from('profile_icons')
+        .createSignedUrl(key, 3600);
+
+      setProfileIconUrl(data?.signedUrl ?? '');
+    })();
+  }, []);
+
   return (
     <header
       className={css({
@@ -84,7 +110,7 @@ export default function Header() {
       >
         <ImageContainer size="icon.menu">
           <Image
-            src="/icon.png"
+            src={profileIconUrl}
             sizes="100vw"
             fill
             objectFit="cover"

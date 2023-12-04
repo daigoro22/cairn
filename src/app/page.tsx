@@ -1,3 +1,5 @@
+'use client';
+
 import { join } from '@/utils/panda';
 import { mainAreaGrid, subGrid } from './_components/styles/_layout';
 import { css } from 'styled-system/css';
