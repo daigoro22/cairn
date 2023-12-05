@@ -9,7 +9,7 @@ export const backgroundEditApiSchema = z.object({
         .string()
         .min(1, '名前を入力してください')
         .max(100, '名前は100文字以下になるようにしてください'),
-      schoolCode: z.string().nullish(),
+      // schoolCode: z.string().nullish(),
       startDate: dateZodObject,
       endDate: dateZodObject.nullish(),
     }),

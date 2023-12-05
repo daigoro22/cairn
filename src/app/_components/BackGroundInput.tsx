@@ -25,7 +25,10 @@ export default function BackGroundInput({
   index: number;
   onRemove: () => void;
 }) {
-  const { register } = useFormContext<BackgroundEditApiSchema>();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<BackgroundEditApiSchema>();
 
   return (
     <div
@@ -71,7 +74,10 @@ export default function BackGroundInput({
           gridCellFlex(),
         ])}
       >
-        <InputContainer label="大学/会社名">
+        <InputContainer
+          label="大学/会社名"
+          error={errors.items?.[index]?.organizationName}
+        >
           <div
             className={css({
               display: 'flex',
@@ -93,7 +99,12 @@ export default function BackGroundInput({
           padding: 'md',
         })}
       >
-        <InputContainer label="在籍期間">
+        <InputContainer
+          label="在籍期間"
+          error={
+            errors.items?.[index]?.startDate ?? errors.items?.[index]?.endDate
+          }
+        >
           <div
             className={css({
               display: 'flex',

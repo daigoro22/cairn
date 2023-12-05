@@ -32,10 +32,10 @@ export default function BackgroundPage() {
     control: methods.control,
   });
 
-  const onSubmit = methods.handleSubmit(async () => {
+  const onSubmit = methods.handleSubmit(async (data) => {
     await fetch('/api/background', {
       method: 'PUT',
-      body: JSON.stringify(fields),
+      body: JSON.stringify(data),
     });
   });
 

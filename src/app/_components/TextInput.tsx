@@ -18,7 +18,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
   { type = 'text', variants = {}, ...args },
   ref,
 ) {
-  return <input className={input(variants)} type={type} {...args} ref={ref} />;
+  return <input className={input(variants)} type={type} ref={ref} {...args} />;
 });
 
 export default TextInput;
