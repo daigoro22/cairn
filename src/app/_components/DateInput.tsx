@@ -11,8 +11,8 @@ const DateInput = forwardRef<HTMLInputElement, Props>(function DateInput(
     <input
       type="date"
       className={input({ marginX: 'none' })}
-      {...args}
       ref={ref}
+      {...args}
     />
   );
 });

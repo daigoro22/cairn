@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { emailZodObject, passwordZodObject } from './sign-up';
+import { emailZodObject, passwordZodObject } from './common';
 
 export const loginApiSchema = z.object({
   email: emailZodObject,
