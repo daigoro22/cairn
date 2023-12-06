@@ -6,8 +6,17 @@ export const dateZodObject = z
     required_error: '日付を入力してください',
     invalid_type_error: '日付を入力してください',
   })
-  .refine((date) => isValid(new Date(date)), '日付の形式が間違っています')
-  .transform((date) => new Date(date));
+  .refine((date) => isValid(new Date(date)), '日付の形式が間違っています');
+
+export const allowEmptydateZodObject = z
+  .string({
+    required_error: '日付を入力してください',
+    invalid_type_error: '日付を入力してください',
+  })
+  .refine(
+    (date) => date === '' || isValid(new Date(date)),
+    '日付の形式が間違っています',
+  );
 
 export const emailZodObject = z
   .string()

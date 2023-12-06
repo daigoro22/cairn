@@ -10,13 +10,16 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import type { BackgroundEditApiSchema } from '@/schemas/background';
-import { backgroundEditApiSchema } from '@/schemas/background';
+import {
+  backgroundEditApiSchema,
+  backgroundGetApiSchema,
+} from '@/schemas/background';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const initialBackground: BackgroundEditApiSchema['items'][number] = {
   organizationName: '',
-  startDate: new Date(),
-  endDate: new Date(),
+  startDate: '',
+  endDate: undefined,
 };
 
 export default function BackgroundPage() {
@@ -27,19 +30,41 @@ export default function BackgroundPage() {
     mode: 'onSubmit',
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     name: 'items',
     control: methods.control,
   });
 
   const onSubmit = methods.handleSubmit(async (data) => {
-    await fetch('/api/background', {
+    console.log(data);
+    const res = await fetch('/api/background', {
       method: 'PUT',
       body: JSON.stringify(data),
     });
+    if (res.ok) {
+      router.push('/');
+    } else {
+      alert('経歴データが登録できませんでした');
+    }
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    void (async () => {
+      const res = await fetch('/api/background', {
+        method: 'GET',
+      });
+      const parsed = backgroundGetApiSchema.safeParse(await res.json());
+      if (!res.ok) {
+        alert('経歴データが取得できませんでした');
+      } else if (parsed.success) {
+        replace(
+          parsed.data.data.items.length
+            ? parsed.data.data.items
+            : [initialBackground],
+        );
+      }
+    })();
+  }, [replace]);
 
   return (
     <FormProvider {...methods}>
