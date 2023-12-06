@@ -29,7 +29,7 @@ export const backgroundGetApiSchema = z.object({
         organizationName: backgroundNameZodObject,
         schoolCode: z.string().nullish(),
         startDate: dateZodObject,
-        endDate: dateZodObject.nullish(),
+        endDate: allowEmptydateZodObject,
       }),
     ),
   }),

@@ -19,7 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 const initialBackground: BackgroundEditApiSchema['items'][number] = {
   organizationName: '',
   startDate: '',
-  endDate: undefined,
+  endDate: '',
 };
 
 export default function BackgroundPage() {
