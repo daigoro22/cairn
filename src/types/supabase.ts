@@ -43,6 +43,58 @@ export interface Database {
           }
         ]
       }
+      reviews: {
+        Row: {
+          days_for_objective_achievement: number
+          id: string
+          item_code: string
+          item_image_url: string | null
+          item_name: string
+          item_url: string
+          objective: string
+          objective_completion_percent: number
+          purchase_date: string
+          rating: number
+          review: string
+          user_id: string
+        }
+        Insert: {
+          days_for_objective_achievement: number
+          id?: string
+          item_code: string
+          item_image_url?: string | null
+          item_name: string
+          item_url: string
+          objective: string
+          objective_completion_percent: number
+          purchase_date: string
+          rating: number
+          review: string
+          user_id: string
+        }
+        Update: {
+          days_for_objective_achievement?: number
+          id?: string
+          item_code?: string
+          item_image_url?: string | null
+          item_name?: string
+          item_url?: string
+          objective?: string
+          objective_completion_percent?: number
+          purchase_date?: string
+          rating?: number
+          review?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       user_details: {
         Row: {
           date_of_birth: string | null

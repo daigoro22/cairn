@@ -13,6 +13,7 @@ const styleObject = {
       },
       'item.review': { width: 'item.review', height: 'item.review' },
       'item.top': { width: 'item.top', height: 'item.top' },
+      'item.itemModal': { width: 'item.itemModal', height: 'item.itemModal' },
     },
   },
 } as const;

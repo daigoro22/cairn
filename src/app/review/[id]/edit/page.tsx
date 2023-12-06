@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/app/_components/Button';
 import DateInput from '@/app/_components/DateInput';
 import ImageContainer from '@/app/_components/ImageContainer';
@@ -10,6 +12,8 @@ import Image from 'next/image';
 import { join } from '@/utils/panda';
 import { input, inputLabel } from '@/app/_components/styles/input';
 import RangeInput from '@/app/_components/RangeInput';
+import { useRef } from 'react';
+import ItemSearchDialog from '@/app/_components/ItemSearchDialog';
 
 const gridCellFlex = cva({
   base: {
@@ -23,6 +27,9 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;
   console.log(id);
 
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const dialogOpen = () => dialogRef.current?.showModal();
+
   return (
     <main className={mainAreaGrid({ grid: 'lg' })}>
       <section
@@ -31,6 +38,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
           css({ gridColumn: '4/10', gridRow: '1/13' }),
         ])}
       >
+        <ItemSearchDialog ref={dialogRef} />
         <h1 className={mainAreaLabel({ grid: 'lg' })}>レビュー投稿</h1>
         <div
           className={join([
@@ -94,7 +102,9 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
               </p>
-              <Button variant="secondary">検索</Button>
+              <Button type="button" variant="secondary" onClick={dialogOpen}>
+                選択
+              </Button>
             </div>
             <div
               className={join([
