@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS reviews (
     item_name TEXT not null,
     item_code TEXT not null,
     item_image_url TEXT,
-    rating Integer not null,
+    rating Real not null,
     item_url VARCHAR(255) not null,
     purchase_date DATE not null,
     objective TEXT not null,

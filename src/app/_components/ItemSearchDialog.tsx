@@ -7,9 +7,13 @@ import { card } from './styles/_layout';
 import { join } from '@/utils/panda';
 import ImageContainer from './ImageContainer';
 import Image from 'next/image';
-import type { ItemSearchApiSchema } from '@/schemas/reviews';
+import type {
+  ItemSearchApiSchema,
+  ReviewEditApiSchema,
+} from '@/schemas/reviews';
 import { itemSearchApiSchema } from '@/schemas/reviews';
 import Link from 'next/link';
+import { useFormContext } from 'react-hook-form';
 
 const ItemSearchDialog = forwardRef(function ItemSearchDialog(
   _: unknown,
@@ -17,24 +21,29 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
 ) {
   const [keyword, setKeyword] = useState('');
   const [items, setItems] = useState<ItemSearchApiSchema>();
+  const { setValue } = useFormContext<ReviewEditApiSchema>();
 
-  const onSearchClick = useCallback(() => {
-    void (async () => {
-      const reqUrl = new URL(
-        `${window.location.origin.toString()}/api/review/itemSearch`,
-      );
-      reqUrl.searchParams.append('keyword', keyword);
-      const res = await fetch(reqUrl.toString(), { method: 'GET' });
-      if (!res.ok) {
-        setItems({ Items: [] });
-      } else {
-        const parsed = itemSearchApiSchema.safeParse(await res.json());
-        if (parsed.success) {
-          setItems(parsed.data);
+  const onSearchClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      void (async () => {
+        e.preventDefault();
+        const reqUrl = new URL(
+          `${window.location.origin.toString()}/api/review/itemSearch`,
+        );
+        reqUrl.searchParams.append('keyword', keyword);
+        const res = await fetch(reqUrl.toString(), { method: 'GET' });
+        if (!res.ok) {
+          setItems({ Items: [] });
+        } else {
+          const parsed = itemSearchApiSchema.safeParse(await res.json());
+          if (parsed.success) {
+            setItems(parsed.data);
+          }
         }
-      }
-    })();
-  }, [keyword]);
+      })();
+    },
+    [keyword],
+  );
 
   return (
     <dialog
@@ -80,7 +89,7 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
               variants={{ marginX: 'none' }}
               onBlur={(e) => setKeyword(e.currentTarget.value)}
             />
-            <Button variant="secondary" onClick={onSearchClick}>
+            <Button type="button" variant="secondary" onClick={onSearchClick}>
               検索
             </Button>
             <Button
@@ -113,6 +122,15 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
                   card({ padding: 'sm' }),
                   css({ border: 'tertiary', width: '100%' }),
                 ])}
+                onClick={() => {
+                  setValue('itemCode', itemCode);
+                  setValue('itemName', itemName);
+                  setValue('itemUrl', itemUrl);
+                  setValue('itemImageUrl', mediumImageUrls[0]?.imageUrl);
+                  if (typeof ref !== 'function') {
+                    ref?.current?.close();
+                  }
+                }}
               >
                 <div
                   className={css({
