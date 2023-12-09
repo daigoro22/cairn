@@ -42,6 +42,12 @@ export const reviewEditApiSchema = z
 
 export type ReviewEditApiSchema = z.infer<typeof reviewEditApiSchema>;
 
+export const reviewGetApiSchema = z.object({
+  data: reviewEditApiSchema,
+  error: z.string(),
+});
+export type ReviewGetApiSchema = z.infer<typeof reviewGetApiSchema>;
+
 export const newReviewApiResponseSchema = z.object({
   error: z.string(),
   data: z.object({ id: z.string().uuid() }),

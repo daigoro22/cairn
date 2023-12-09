@@ -12,15 +12,18 @@ import Image from 'next/image';
 import { join } from '@/utils/panda';
 import { input, inputLabel } from '@/app/_components/styles/input';
 import RangeInput from '@/app/_components/RangeInput';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ItemSearchDialog from '@/app/_components/ItemSearchDialog';
 import { useForm, FormProvider } from 'react-hook-form';
 import {
   reviewEditApiSchema,
+  reviewGetApiSchema,
   type ReviewEditApiSchema,
 } from '@/schemas/reviews';
 import { format } from 'date-fns';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { isKeyOfObject } from '@/utils/form';
+import { useRouter } from 'next/navigation';
 
 const gridCellFlex = cva({
   base: {
@@ -32,6 +35,7 @@ const gridCellFlex = cva({
 
 export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;
+  const router = useRouter();
 
   const dialogRef = useRef<HTMLDialogElement>(null);
   const dialogOpen = () => dialogRef.current?.showModal();
@@ -56,6 +60,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
     formState: { errors },
     watch,
     handleSubmit,
+    setValue,
   } = methods;
 
   const itemImageUrl = watch('itemImageUrl');
@@ -63,16 +68,32 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
   const rating = watch('rating', 2.5);
 
   const onSubmit = handleSubmit(async (data) => {
-    const res = await fetch(`/api/review/${id}/edit`, {
+    const res = await fetch(`/api/review/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
     if (res.status === 204) {
       alert('レビューの更新が完了しました');
+      router.push('/');
     } else {
       alert('レビューの更新に失敗しました');
     }
   });
+
+  useEffect(() => {
+    void (async () => {
+      const res = await fetch(`/api/review/${id}`, { method: 'GET' });
+      const parsed = reviewGetApiSchema.safeParse(await res.json());
+      if (parsed.success) {
+        for (const [key, value] of Object.entries(parsed.data.data)) {
+          if (isKeyOfObject(key, parsed.data.data)) setValue(key, value);
+        }
+      } else {
+        alert('レビュー情報の取得に失敗しました');
+        router.push('/');
+      }
+    })();
+  }, [id, router, setValue]);
 
   return (
     <FormProvider {...methods}>
