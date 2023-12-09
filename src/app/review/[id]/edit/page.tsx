@@ -88,9 +88,6 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
         for (const [key, value] of Object.entries(parsed.data.data)) {
           if (isKeyOfObject(key, parsed.data.data)) setValue(key, value);
         }
-      } else {
-        alert('レビュー情報の取得に失敗しました');
-        router.push('/');
       }
     })();
   }, [id, router, setValue]);

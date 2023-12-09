@@ -32,6 +32,7 @@ export async function POST() {
       days_for_objective_achievement: 0,
       objective_completion_percent: 0,
       review: '',
+      status: 1,
     })
     .select('id')
     .limit(1);

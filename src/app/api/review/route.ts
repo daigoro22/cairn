@@ -1,5 +1,4 @@
 import { REVIEW_TIMELINE_DEFAULT_QUERY_LIMIT } from '@/constants/supabase';
-import { reviewTimelineApiSchema } from '@/schemas/reviews';
 import { createRouterClient } from '@/utils/supabase';
 import { cookies } from 'next/headers';
 import { NextResponse, type NextRequest } from 'next/server';
@@ -28,6 +27,7 @@ export async function GET(request: NextRequest) {
     .select(
       'id, item_image_url, item_name, objective, rating, objective_completion_percent, purchase_date',
     )
+    .filter('status', 'eq', 2)
     .limit(Number(limit))
     .order('updated_at', { ascending: true });
 
@@ -48,13 +48,6 @@ export async function GET(request: NextRequest) {
       objectiveCompletionPercent: objective_completion_percent,
     }),
   );
-
-  const parsed = reviewTimelineApiSchema.safeParse({
-    error: statusText,
-    data: reviewData,
-  });
-
-  console.log(data);
 
   return NextResponse.json(
     { error: statusText, data: reviewData },

@@ -56,6 +56,7 @@ export async function PUT(
       days_for_objective_achievement,
       objective_completion_percent,
       review,
+      status: 2,
     })
     .filter('id', 'eq', reviewId);
 
