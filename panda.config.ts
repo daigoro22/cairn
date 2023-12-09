@@ -22,7 +22,11 @@ export default defineConfig({
         header: { value: '6rem' },
         icon: { menu: { value: '4rem' }, reviewCard: { value: '2rem' } },
         menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
-        item: { review: { value: '12rem' }, top: { value: '100%' } },
+        item: {
+          review: { value: '12rem' },
+          top: { value: '100%' },
+          itemModal: { value: '6rem' },
+        },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },

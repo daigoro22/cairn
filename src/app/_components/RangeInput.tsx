@@ -1,15 +1,28 @@
 import { css } from 'styled-system/css';
 import { input } from './styles/input';
-import type { InputHTMLAttributes, PropsWithChildren } from 'react';
+import {
+  forwardRef,
+  type InputHTMLAttributes,
+  type PropsWithChildren,
+} from 'react';
 
 type Props = PropsWithChildren<
   Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'list'>
 >;
 
-export default function RangeInput({ children, ...rest }: Props) {
+const RangeInput = forwardRef<HTMLInputElement, Props>(function RangeInput(
+  { children, ...rest }: Props,
+  ref,
+) {
   return (
     <>
-      <input className={input()} type="range" list="values" {...rest} />
+      <input
+        className={input()}
+        type="range"
+        list="values"
+        {...rest}
+        ref={ref}
+      />
       <datalist
         className={css({
           display: 'flex',
@@ -22,4 +35,6 @@ export default function RangeInput({ children, ...rest }: Props) {
       </datalist>
     </>
   );
-}
+});
+
+export default RangeInput;

@@ -42,7 +42,13 @@ export const card = cva({
     flexDirection: 'column',
     rowGap: '1rem',
     bg: 'white',
-    padding: 'xl',
     borderRadius: 'card.md',
   },
+  variants: {
+    padding: {
+      xl: { padding: 'xl' },
+      sm: { padding: 'sm' },
+    },
+  },
+  defaultVariants: { padding: 'xl' },
 });

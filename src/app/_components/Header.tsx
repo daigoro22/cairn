@@ -17,6 +17,7 @@ import { menuIcon } from './styles/display';
 import { useCallback, useEffect, useState } from 'react';
 import { createBrowserClient } from '@/utils/supabase';
 import { useRouter } from 'next/navigation';
+import { newReviewApiResponseSchema } from '@/schemas/reviews';
 
 export default function Header() {
   const [profileIconUrl, setProfileIconUrl] = useState('');
@@ -54,6 +55,18 @@ export default function Header() {
       })
       .catch(console.error);
   }, [router, supabase.auth]);
+
+  const onReviewSubmitButtonClicked = () => {
+    void (async () => {
+      const res = await fetch('/api/review/new', { method: 'POST' });
+      if (res.ok) {
+        const parsed = newReviewApiResponseSchema.safeParse(await res.json());
+        if (parsed.success) {
+          router.push(`/review/${parsed.data.data.id}/edit`);
+        }
+      }
+    })();
+  };
 
   return (
     <header
@@ -155,7 +168,7 @@ export default function Header() {
           margin: 'auto',
         })}
       >
-        <Button>投稿</Button>
+        <Button onClick={onReviewSubmitButtonClicked}>投稿</Button>
       </div>
     </header>
   );
