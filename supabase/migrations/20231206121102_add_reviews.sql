@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE IF NOT EXISTS reviews (
     id uuid not null default gen_random_uuid() primary key,
-    user_id uuid references auth.users(id) not null,
+    user_id uuid references user_details(id) not null,
     item_name TEXT not null,
     item_code TEXT not null,
     item_image_url TEXT,

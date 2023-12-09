@@ -14,9 +14,7 @@ export default function Home() {
   useEffect(() => {
     void (async () => {
       const res = await fetch('/api/review', { method: 'GET' });
-      const data = await res.json();
-      console.log(data);
-      const parsed = reviewTimelineApiSchema.safeParse(data);
+      const parsed = reviewTimelineApiSchema.safeParse(await res.json());
       if (parsed.success) {
         setReviews(parsed.data.data);
       } else {
@@ -55,10 +53,14 @@ export default function Home() {
               objectiveCompletionPercent,
               itemName,
               itemImageUrl,
+              userName,
+              userProfileIconUrl,
             }) => (
               <ReviewCard
                 key={id}
                 id={id}
+                userName={userName}
+                userProfileIconUrl={userProfileIconUrl}
                 rating={rating}
                 objective={objective}
                 objectiveCompletionPercent={objectiveCompletionPercent}

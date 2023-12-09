@@ -120,7 +120,7 @@ export interface Database {
           {
             foreignKeyName: "reviews_user_id_fkey"
             columns: ["user_id"]
-            referencedRelation: "users"
+            referencedRelation: "user_details"
             referencedColumns: ["id"]
           }
         ]

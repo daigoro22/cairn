@@ -50,13 +50,20 @@ export type ReviewGetApiSchema = z.infer<typeof reviewGetApiSchema>;
 
 export const reviewTimelineApiSchema = z.object({
   data: z.array(
-    reviewEditApiSchema.omit({
-      itemUrl: true,
-      itemCode: true,
-      review: true,
-      daysForObjectiveAchievement: true,
-      purchaseDate: true,
-    }),
+    reviewEditApiSchema
+      .omit({
+        itemUrl: true,
+        itemCode: true,
+        review: true,
+        daysForObjectiveAchievement: true,
+        purchaseDate: true,
+      })
+      .merge(
+        z.object({
+          userName: z.string(),
+          userProfileIconUrl: z.string().url(),
+        }),
+      ),
   ),
   error: z.string(),
 });

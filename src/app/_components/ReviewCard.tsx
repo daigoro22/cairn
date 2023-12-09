@@ -10,6 +10,8 @@ export default function ReviewCard({
   objective,
   objectiveCompletionPercent,
   itemImageUrl,
+  userName,
+  userProfileIconUrl,
 }: {
   id: string;
   itemName: string;
@@ -17,6 +19,8 @@ export default function ReviewCard({
   objective: string;
   objectiveCompletionPercent: number;
   itemImageUrl: string | undefined | null;
+  userName: string;
+  userProfileIconUrl: string | undefined | null;
 }) {
   return (
     <Link href={`/review/${id}/detail`}>
@@ -92,7 +96,7 @@ export default function ReviewCard({
         >
           <ImageContainer size="icon.reviewCard">
             <Image
-              src="/icon.png"
+              src={userProfileIconUrl}
               sizes="100vw"
               fill
               objectFit="cover"
@@ -108,7 +112,8 @@ export default function ReviewCard({
             marginY: 'auto',
           })}
         >
-          <p className={css({ fontSize: 'sm' })}>テストユーザ@購入時の肩書</p>
+          <p className={css({ fontSize: 'sm' })}>{userName}</p>
+          {/* TODO: 購入時の肩書追加 */}
         </div>
       </div>
     </Link>

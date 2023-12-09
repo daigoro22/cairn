@@ -25,11 +25,27 @@ export async function GET(request: NextRequest) {
   const { statusText, status, data } = await supabase
     .from('reviews')
     .select(
-      'id, item_image_url, item_name, objective, rating, objective_completion_percent, purchase_date',
+      'id, user_id, item_image_url, item_name, objective, rating, objective_completion_percent, purchase_date, user_details(name, profile_icon_path)',
     )
     .filter('status', 'eq', 2)
     .limit(Number(limit))
     .order('updated_at', { ascending: true });
+
+  const urls = await supabase.storage.from('profile_icons').createSignedUrls(
+    data?.reduce((p: string[], { user_details }) => {
+      return user_details && user_details.profile_icon_path
+        ? [...p, user_details.profile_icon_path]
+        : p;
+    }, []) ?? [],
+    3600,
+  );
+
+  const urlDict =
+    urls.data?.reduce(
+      (p: { [key: string]: string }, { path, signedUrl }) =>
+        path ? { ...p, [path]: signedUrl } : p,
+      {},
+    ) ?? {};
 
   const reviewData = data?.map(
     ({
@@ -39,6 +55,7 @@ export async function GET(request: NextRequest) {
       rating,
       objective,
       objective_completion_percent,
+      user_details,
     }) => ({
       id,
       itemName: item_name,
@@ -46,6 +63,8 @@ export async function GET(request: NextRequest) {
       rating,
       objective,
       objectiveCompletionPercent: objective_completion_percent,
+      userName: user_details?.name,
+      userProfileIconUrl: urlDict[user_details?.profile_icon_path ?? ''],
     }),
   );
 
