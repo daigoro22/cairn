@@ -45,6 +45,7 @@ export interface Database {
       }
       reviews: {
         Row: {
+          created_at: string | null
           days_for_objective_achievement: number
           id: string
           item_code: string
@@ -56,9 +57,11 @@ export interface Database {
           purchase_date: string
           rating: number
           review: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
+          created_at?: string | null
           days_for_objective_achievement: number
           id?: string
           item_code: string
@@ -70,9 +73,11 @@ export interface Database {
           purchase_date: string
           rating: number
           review: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
+          created_at?: string | null
           days_for_objective_achievement?: number
           id?: string
           item_code?: string
@@ -84,6 +89,7 @@ export interface Database {
           purchase_date?: string
           rating?: number
           review?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: [

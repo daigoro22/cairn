@@ -38,7 +38,7 @@ export const reviewEditApiSchema = z
     itemImageUrl: z.string().url().nullish(),
     itemUrl: z.string().url({ message: 'URLの形式で入力してください' }),
   })
-  .merge(itemZodObject.omit({ mediumImageUrls: true }));
+  .merge(itemZodObject.omit({ mediumImageUrls: true, itemUrl: true }));
 
 export type ReviewEditApiSchema = z.infer<typeof reviewEditApiSchema>;
 
@@ -47,6 +47,21 @@ export const reviewGetApiSchema = z.object({
   error: z.string(),
 });
 export type ReviewGetApiSchema = z.infer<typeof reviewGetApiSchema>;
+
+export const reviewTimelineApiSchema = z.object({
+  data: z.array(
+    reviewEditApiSchema.omit({
+      itemUrl: true,
+      itemCode: true,
+      review: true,
+      daysForObjectiveAchievement: true,
+      purchaseDate: true,
+    }),
+  ),
+  error: z.string(),
+});
+
+export type ReviewTimelineApiSchema = z.infer<typeof reviewTimelineApiSchema>;
 
 export const newReviewApiResponseSchema = z.object({
   error: z.string(),
