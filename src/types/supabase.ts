@@ -43,8 +43,24 @@ export interface Database {
           }
         ]
       }
+      review_status: {
+        Row: {
+          id: number
+          status_name: string
+        }
+        Insert: {
+          id?: number
+          status_name: string
+        }
+        Update: {
+          id?: number
+          status_name?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
+          created_at: string | null
           days_for_objective_achievement: number
           id: string
           item_code: string
@@ -56,9 +72,13 @@ export interface Database {
           purchase_date: string
           rating: number
           review: string
+          status: number
+          title: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
+          created_at?: string | null
           days_for_objective_achievement: number
           id?: string
           item_code: string
@@ -70,9 +90,13 @@ export interface Database {
           purchase_date: string
           rating: number
           review: string
+          status: number
+          title: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
+          created_at?: string | null
           days_for_objective_achievement?: number
           id?: string
           item_code?: string
@@ -84,13 +108,22 @@ export interface Database {
           purchase_date?: string
           rating?: number
           review?: string
+          status?: number
+          title?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: [
           {
+            foreignKeyName: "reviews_status_fkey"
+            columns: ["status"]
+            referencedRelation: "review_status"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "reviews_user_id_fkey"
             columns: ["user_id"]
-            referencedRelation: "users"
+            referencedRelation: "user_details"
             referencedColumns: ["id"]
           }
         ]

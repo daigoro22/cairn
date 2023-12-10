@@ -21,6 +21,7 @@ export type ItemSearchApiSchema = z.infer<typeof itemSearchApiSchema>;
 export const reviewEditApiSchema = z
   .object({
     id: z.string().uuid(),
+    title: z.string().min(1, '入力してください').max(100, '文字数が多すぎます'),
     rating: z.coerce.number().min(0).max(5).step(0.5),
     purchaseDate: dateZodObject,
     objective: z
@@ -38,7 +39,7 @@ export const reviewEditApiSchema = z
     itemImageUrl: z.string().url().nullish(),
     itemUrl: z.string().url({ message: 'URLの形式で入力してください' }),
   })
-  .merge(itemZodObject.omit({ mediumImageUrls: true }));
+  .merge(itemZodObject.omit({ mediumImageUrls: true, itemUrl: true }));
 
 export type ReviewEditApiSchema = z.infer<typeof reviewEditApiSchema>;
 
@@ -47,6 +48,28 @@ export const reviewGetApiSchema = z.object({
   error: z.string(),
 });
 export type ReviewGetApiSchema = z.infer<typeof reviewGetApiSchema>;
+
+export const reviewTimelineApiSchema = z.object({
+  data: z.array(
+    reviewEditApiSchema
+      .omit({
+        itemUrl: true,
+        itemCode: true,
+        review: true,
+        daysForObjectiveAchievement: true,
+        purchaseDate: true,
+      })
+      .merge(
+        z.object({
+          userName: z.string(),
+          userProfileIconUrl: z.string().url(),
+        }),
+      ),
+  ),
+  error: z.string(),
+});
+
+export type ReviewTimelineApiSchema = z.infer<typeof reviewTimelineApiSchema>;
 
 export const newReviewApiResponseSchema = z.object({
   error: z.string(),
