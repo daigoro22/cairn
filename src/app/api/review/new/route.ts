@@ -21,6 +21,7 @@ export async function POST() {
   const { data, status, statusText } = await supabase
     .from('reviews')
     .insert({
+      title: '',
       user_id: user.id,
       item_name: '',
       item_code: '',

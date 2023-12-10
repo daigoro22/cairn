@@ -21,6 +21,7 @@ export type ItemSearchApiSchema = z.infer<typeof itemSearchApiSchema>;
 export const reviewEditApiSchema = z
   .object({
     id: z.string().uuid(),
+    title: z.string().min(1, '入力してください').max(100, '文字数が多すぎます'),
     rating: z.coerce.number().min(0).max(5).step(0.5),
     purchaseDate: dateZodObject,
     objective: z

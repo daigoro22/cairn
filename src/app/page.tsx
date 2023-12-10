@@ -51,7 +51,7 @@ export default function Home() {
               rating,
               objective,
               objectiveCompletionPercent,
-              itemName,
+              title,
               itemImageUrl,
               userName,
               userProfileIconUrl,
@@ -64,7 +64,7 @@ export default function Home() {
                 rating={rating}
                 objective={objective}
                 objectiveCompletionPercent={objectiveCompletionPercent}
-                itemName={itemName}
+                title={title}
                 itemImageUrl={itemImageUrl}
               />
             ),

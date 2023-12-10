@@ -30,6 +30,7 @@ export async function PUT(
     );
   }
   const {
+    title,
     itemName: item_name,
     itemCode: item_code,
     itemImageUrl: item_image_url,
@@ -46,6 +47,7 @@ export async function PUT(
     .from('reviews')
     .update({
       user_id: user.id,
+      title,
       rating,
       item_name,
       item_code,
@@ -99,6 +101,7 @@ export async function GET(
   const reviewData = data?.map(
     ({
       id,
+      title,
       user_id,
       item_name,
       item_code,
@@ -112,6 +115,7 @@ export async function GET(
       review,
     }) => ({
       id,
+      title,
       userId: user_id,
       itemName: item_name,
       itemCode: item_code,

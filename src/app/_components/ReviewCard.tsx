@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function ReviewCard({
   id,
-  itemName,
+  title,
   rating,
   objective,
   objectiveCompletionPercent,
@@ -14,7 +14,7 @@ export default function ReviewCard({
   userProfileIconUrl,
 }: {
   id: string;
-  itemName: string;
+  title: string;
   rating: number;
   objective: string;
   objectiveCompletionPercent: number;
@@ -71,7 +71,7 @@ export default function ReviewCard({
               textOverflow: 'ellipsis',
             })}
           >
-            {itemName}
+            {title}
           </p>
           <p>総合評価：{rating}</p>
         </div>

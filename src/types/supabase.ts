@@ -73,6 +73,7 @@ export interface Database {
           rating: number
           review: string
           status: number
+          title: string
           updated_at: string | null
           user_id: string
         }
@@ -90,6 +91,7 @@ export interface Database {
           rating: number
           review: string
           status: number
+          title: string
           updated_at?: string | null
           user_id: string
         }
@@ -107,6 +109,7 @@ export interface Database {
           rating?: number
           review?: string
           status?: number
+          title?: string
           updated_at?: string | null
           user_id?: string
         }

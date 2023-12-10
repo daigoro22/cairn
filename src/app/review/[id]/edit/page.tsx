@@ -171,7 +171,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               <div
                 className={join([
                   css({
-                    gridColumn: '1/4',
+                    gridColumn: '5/7',
                     gridRow: '3/4',
                   }),
                   gridCellFlex(),
@@ -195,6 +195,20 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                       />
                     ))}
                   </RangeInput>
+                </InputContainer>
+              </div>
+
+              <div
+                className={join([
+                  css({
+                    gridColumn: '1/5',
+                    gridRow: '3/4',
+                  }),
+                  gridCellFlex(),
+                ])}
+              >
+                <InputContainer label="レビュータイトル" error={errors.title}>
+                  <TextInput type="text" {...register('title')} />
                 </InputContainer>
               </div>
               <div

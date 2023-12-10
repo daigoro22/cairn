@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   const { statusText, status, data } = await supabase
     .from('reviews')
     .select(
-      'id, user_id, item_image_url, item_name, objective, rating, objective_completion_percent, purchase_date, user_details(name, profile_icon_path)',
+      'id, title, user_id, item_image_url, item_name, objective, rating, objective_completion_percent, purchase_date, user_details(name, profile_icon_path)',
     )
     .filter('status', 'eq', 2)
     .limit(Number(limit))
@@ -50,6 +50,7 @@ export async function GET(request: NextRequest) {
   const reviewData = data?.map(
     ({
       id,
+      title,
       item_name,
       item_image_url,
       rating,
@@ -58,6 +59,7 @@ export async function GET(request: NextRequest) {
       user_details,
     }) => ({
       id,
+      title,
       itemName: item_name,
       itemImageUrl: item_image_url,
       rating,
