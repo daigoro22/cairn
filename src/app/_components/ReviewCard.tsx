@@ -95,13 +95,15 @@ export default function ReviewCard({
           })}
         >
           <ImageContainer size="icon.reviewCard">
-            <Image
-              src={userProfileIconUrl}
-              sizes="100vw"
-              fill
-              objectFit="cover"
-              alt="cairn"
-            />
+            {userProfileIconUrl && (
+              <Image
+                src={userProfileIconUrl}
+                sizes="100vw"
+                fill
+                objectFit="cover"
+                alt="cairn"
+              />
+            )}
           </ImageContainer>
         </div>
 
