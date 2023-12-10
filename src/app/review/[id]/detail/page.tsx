@@ -1,3 +1,5 @@
+'use client';
+
 import ImageContainer from '@/app/_components/ImageContainer';
 import InputContainer from '@/app/_components/InputContainer';
 import { mainAreaLabel } from '@/app/_components/styles/display';
@@ -7,6 +9,9 @@ import Image from 'next/image';
 import { join } from '@/utils/panda';
 import { inputLabel } from '@/app/_components/styles/input';
 import RangeInput from '@/app/_components/RangeInput';
+import { useEffect, useState } from 'react';
+import type { ReviewGetApiSchema } from '@/schemas/reviews';
+import { reviewGetApiSchema } from '@/schemas/reviews';
 
 const gridCellFlex = cva({
   base: {
@@ -18,7 +23,21 @@ const gridCellFlex = cva({
 
 export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  console.log(id);
+  const [review, setReview] = useState<ReviewGetApiSchema>();
+
+  const data = review?.data;
+
+  useEffect(() => {
+    void (async () => {
+      const res = await fetch(`/api/review/${id}`, { method: 'GET' });
+      const parsed = reviewGetApiSchema.safeParse(await res.json());
+      if (parsed.success) {
+        setReview(parsed.data);
+      } else {
+        alert('レビューデータの取得に失敗しました');
+      }
+    })();
+  }, [id]);
 
   return (
     <main className={mainAreaGrid({ grid: 'lg' })}>
@@ -67,13 +86,15 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               })}
             >
               <ImageContainer size="item.review">
-                <Image
-                  src="/icon.png"
-                  sizes="100vw"
-                  fill
-                  objectFit="cover"
-                  alt="cairn"
-                />
+                {data?.itemImageUrl && (
+                  <Image
+                    src={data?.itemImageUrl}
+                    sizes="100vw"
+                    fill
+                    objectFit="cover"
+                    alt="cairn"
+                  />
+                )}
               </ImageContainer>
             </div>
             <div
@@ -82,11 +103,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                 gridRow: '2/3',
               })}
             >
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              </p>
+              <a href={data?.itemUrl}>{data?.itemName}</a>
             </div>
             <div
               className={join([
@@ -98,7 +115,13 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               ])}
             >
               <InputContainer label="総合評価">
-                <RangeInput min={0} max={5} step={0.5} disabled>
+                <RangeInput
+                  min={0}
+                  max={5}
+                  step={0.5}
+                  disabled
+                  value={data?.rating}
+                >
                   {[...Array(6).keys()].map((_, i) => (
                     <option
                       key={`rangeOption${i}`}
@@ -112,77 +135,66 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={join([
                 css({
-                  gridColumn: '1/5',
+                  gridColumn: '1/4',
                   gridRow: '4/5',
                 }),
                 gridCellFlex(),
               ])}
             >
-              <InputContainer label="商品URL">
-                <a href="https://google.com">https://google.comaaaaaaaaaaa</a>
+              <InputContainer label="買った時期">
+                {data?.purchaseDate ?? ''}
               </InputContainer>
             </div>
             <div
               className={join([
                 css({
-                  gridColumn: '4/6',
+                  gridColumn: '4/7',
                   gridRow: '4/5',
-                }),
-                gridCellFlex(),
-              ])}
-            >
-              <InputContainer label="買った時期">2023/11/28</InputContainer>
-            </div>
-            <div
-              className={join([
-                css({
-                  gridColumn: '1/5',
-                  gridRow: '5/6',
                 }),
                 gridCellFlex(),
               ])}
             >
               <InputContainer label="買った目的">
-                スキルアップのため
+                {data?.objective ?? ''}
               </InputContainer>
             </div>
             <div
               className={join([
                 css({
-                  gridColumn: '1/3',
-                  gridRow: '6/7',
+                  gridColumn: '1/4',
+                  gridRow: '5/6',
                 }),
                 gridCellFlex(),
               ])}
             >
-              <InputContainer label="目的の達成期間">100 日</InputContainer>
+              <InputContainer label="目的の達成期間">
+                {`${String(data?.daysForObjectiveAchievement ?? 0)} 日`}
+              </InputContainer>
             </div>
             <div
               className={join([
                 css({
-                  gridColumn: '4/6',
-                  gridRow: '6/7',
+                  gridColumn: '4/7',
+                  gridRow: '5/6',
                 }),
                 gridCellFlex(),
               ])}
             >
               <InputContainer label="現在の目的の達成度合い">
-                100 %
+                {`${String(data?.objectiveCompletionPercent)} %`}
               </InputContainer>
             </div>
             <div
               className={join([
                 css({
                   gridColumn: '1/6',
-                  gridRow: '7/9',
+                  gridRow: '6/8',
                 }),
                 gridCellFlex(),
               ])}
             >
               <InputContainer label="レビュー">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                {data?.review ?? ''}
               </InputContainer>
             </div>
           </form>
