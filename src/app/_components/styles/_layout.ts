@@ -17,11 +17,13 @@ export const mainAreaGrid = cva({
         gridRowGap: 'gridGap.md',
       },
       lg: {
-        gridTemplateColumns:
-          'repeat(3,minmax(0,1fr)) repeat(6,8rem) repeat(3,minmax(0,1fr))',
-        gridTemplateRows: 'repeat(10,auto)',
-        gridColumnGap: 'gridGap.lg',
-        gridRowGap: 'gridGap.lg',
+        gridTemplateColumns: {
+          base: 'repeat(6,auto)',
+          lg: 'repeat(3,minmax(0,1fr)) repeat(6,8rem) repeat(3,minmax(0,1fr))',
+        },
+        gridTemplateRows: { base: 'repeat(6,auto)', lg: 'repeat(10,auto)' },
+        gridColumnGap: { base: 'gridGap.md', lg: 'gridGap.lg' },
+        gridRowGap: { base: 'gridGap.md', lg: 'gridGap.lg' },
       },
     },
   },

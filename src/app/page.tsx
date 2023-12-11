@@ -29,12 +29,12 @@ export default function Home() {
       <section
         className={join([
           subGrid(),
-          css({ gridColumn: '3/11', gridRow: '2/13' }),
+          css({ gridColumn: { base: '2/7', lg: '3/11' }, gridRow: '2/13' }),
         ])}
       >
         <div
           className={css({
-            gridColumn: '1/9',
+            gridColumn: { base: '1/5', lg: '1/9' },
             gridRow: '1/13',
             bg: 'white',
             borderRadius: 'card.md',
