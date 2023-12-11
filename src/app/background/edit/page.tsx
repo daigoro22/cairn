@@ -73,20 +73,23 @@ export default function BackgroundPage() {
           <section
             className={join([
               subGrid(),
-              css({ gridColumn: '4/10', gridRow: '1/13' }),
+              css({
+                gridColumn: { base: '2/6', lg: '4/10' },
+                gridRow: '1/13',
+              }),
             ])}
           >
             <h1 className={mainAreaLabel({ grid: 'lg' })}>経歴登録</h1>
             <div
               className={css({
-                gridColumn: '1/7',
+                gridColumn: { base: '1/4', lg: '1/7' },
                 gridRow: '2/13',
                 bg: 'white',
                 borderRadius: 'card.md',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 'xl',
-                padding: 'xl',
+                gap: { base: 'md', lg: 'xl' },
+                padding: { base: 'md', lg: 'xl' },
                 justifyContent: 'flex-start',
               })}
             >
