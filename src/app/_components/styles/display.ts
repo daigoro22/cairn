@@ -6,6 +6,7 @@ export const mainAreaLabel = cva({
     grid: {
       md: { gridColumn: '5/9' },
       lg: { gridColumn: '1/7', gridRow: '1/2' },
+      xl: { gridColumn: '1/7', gridRow: '1/2' },
     },
   },
   defaultVariants: { grid: 'md' },

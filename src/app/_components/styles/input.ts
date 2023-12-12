@@ -31,7 +31,6 @@ export const inputContainer = cva({
     display: 'flex',
     flexDirection: 'column',
     gap: 'xs',
-    marginBottom: 'md',
   },
 });
 
