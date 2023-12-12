@@ -40,11 +40,15 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
   }, [id]);
 
   return (
-    <main className={mainAreaGrid({ grid: 'lg' })}>
+    <main className={mainAreaGrid({ grid: 'xl' })}>
       <section
         className={join([
           subGrid(),
-          css({ gridColumn: '4/10', gridRow: '1/13' }),
+          css({
+            gridColumn: { base: '1/5', sm: '2/6', lg: '4/10' },
+            gridRow: '1/13',
+            gridGap: { base: 'sm', lg: 'lg' },
+          }),
         ])}
       >
         <h1 className={mainAreaLabel({ grid: 'lg' })}>レビュー投稿</h1>
@@ -52,7 +56,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
           className={join([
             subGrid(),
             css({
-              gridColumn: '1/7',
+              gridColumn: { base: '1/6', lg: '1/7' },
               gridRow: '2/13',
               bg: 'white',
               borderRadius: 'card.md',
@@ -63,14 +67,14 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             className={join([
               subGrid(),
               css({
-                gridColumn: '1/7',
+                gridColumn: { base: '1/5', lg: '1/7' },
                 gridRow: '1/13',
               }),
             ])}
           >
             <div
               className={css({
-                gridColumn: '1/7',
+                gridColumn: { base: '1/5', lg: '1/7' },
                 gridRow: '1/2',
                 paddingLeft: 'md',
                 paddingTop: 'md',
@@ -99,7 +103,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             </div>
             <div
               className={css({
-                gridColumn: '3/7',
+                gridColumn: { base: '3/5', lg: '3/7' },
                 gridRow: '2/3',
               })}
             >
@@ -135,7 +139,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={join([
                 css({
-                  gridColumn: '1/4',
+                  gridColumn: { base: '1/3', lg: '1/4' },
                   gridRow: '4/5',
                 }),
                 gridCellFlex(),
@@ -148,7 +152,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={join([
                 css({
-                  gridColumn: '4/7',
+                  gridColumn: { base: '3/5', lg: '4/7' },
                   gridRow: '4/5',
                 }),
                 gridCellFlex(),
@@ -161,7 +165,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={join([
                 css({
-                  gridColumn: '1/4',
+                  gridColumn: { base: '1/3', lg: '1/4' },
                   gridRow: '5/6',
                 }),
                 gridCellFlex(),
@@ -174,7 +178,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             <div
               className={join([
                 css({
-                  gridColumn: '4/7',
+                  gridColumn: { base: '3/5', lg: '4/7' },
                   gridRow: '5/6',
                 }),
                 gridCellFlex(),
