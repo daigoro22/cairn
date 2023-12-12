@@ -51,7 +51,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
           }),
         ])}
       >
-        <h1 className={mainAreaLabel({ grid: 'lg' })}>レビュー投稿</h1>
+        <h1 className={mainAreaLabel({ grid: 'xl' })}>{data?.title}</h1>
         <div
           className={join([
             subGrid(),
