@@ -1,7 +1,11 @@
 import { cva } from 'styled-system/css';
 
 export const mainAreaLabel = cva({
-  base: { fontSize: { base: 'lg', lg: 'xl' }, paddingY: 'xl' },
+  base: {
+    fontSize: { base: 'lg', lg: 'xl' },
+    paddingY: 'xl',
+    paddingLeft: { base: 'md', lg: '0' },
+  },
   variants: {
     grid: {
       md: { gridColumn: '5/9' },

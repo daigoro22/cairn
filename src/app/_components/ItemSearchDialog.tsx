@@ -52,8 +52,8 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
         inset: 0,
         marginX: 'auto',
         marginY: '30%',
-        width: '50%',
-        height: '30%',
+        width: { base: '90%', lg: '50%' },
+        height: { base: '80%', lg: '30%' },
         border: 'secondary',
         borderRadius: 'input',
         paddingX: 'md',
@@ -82,6 +82,7 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
               display: 'flex',
               gap: 'md',
               alignItems: 'flex-end',
+              flexWrap: 'wrap',
             })}
           >
             <TextInput
