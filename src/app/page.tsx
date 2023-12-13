@@ -25,22 +25,26 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={mainAreaGrid({ grid: 'lg' })}>
+    <main className={mainAreaGrid({ grid: 'xl' })}>
       <section
         className={join([
           subGrid(),
-          css({ gridColumn: { base: '2/7', lg: '3/11' }, gridRow: '2/13' }),
+          css({
+            gridColumn: { base: '1/5', sm: '1/7', lg: '3/11' },
+            gridRow: '2/13',
+          }),
         ])}
       >
         <div
           className={css({
-            gridColumn: { base: '1/5', lg: '1/9' },
+            gridColumn: { base: '1/5', sm: '1/7', lg: '1/9' },
             gridRow: '1/13',
             bg: 'white',
             borderRadius: 'card.md',
             display: 'flex',
             gap: '2rem',
             padding: 'xl',
+            margin: 'md',
             justifyContent: 'space-evenly',
             flexWrap: 'wrap',
           })}

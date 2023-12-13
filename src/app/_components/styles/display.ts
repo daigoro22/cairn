@@ -4,7 +4,7 @@ export const mainAreaLabel = cva({
   base: {
     fontSize: { base: 'lg', lg: 'xl' },
     paddingY: 'xl',
-    paddingLeft: { base: 'md', lg: '0' },
+    paddingLeft: { base: 'md', lg: 'none' },
   },
   variants: {
     grid: {

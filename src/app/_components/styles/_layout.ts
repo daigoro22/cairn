@@ -32,7 +32,11 @@ export const mainAreaGrid = cva({
           lg: 'repeat(3,minmax(0,1fr)) repeat(6,8rem) repeat(3,minmax(0,1fr))',
         },
         gridTemplateRows: { base: 'repeat(6,auto)', lg: 'repeat(10,auto)' },
-        gridColumnGap: { base: 'gridGap.md', lg: 'gridGap.lg' },
+        gridColumnGap: {
+          base: 'gridGap.sm',
+          sm: 'gridGap.md',
+          lg: 'gridGap.lg',
+        },
         gridRowGap: { base: 'gridGap.sm', lg: 'gridGap.lg' },
       },
     },
