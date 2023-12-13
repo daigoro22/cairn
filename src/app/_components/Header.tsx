@@ -73,7 +73,7 @@ export default function Header() {
       className={css({
         height: 'header',
         display: 'grid',
-        gridTemplateColumns: 'repeat(12,1fr)',
+        gridTemplateColumns: { base: 'repeat(6,1fr)', lg: 'repeat(12,1fr)' },
         gridColumnGap: 'gridGap.md',
         alignItems: 'center',
         bg: 'white',
@@ -120,6 +120,7 @@ export default function Header() {
       <div
         className={css({
           gridColumn: '9/11',
+          display: { base: 'none', lg: 'inline' },
         })}
       >
         <TextInput
@@ -132,7 +133,7 @@ export default function Header() {
       {profileIconUrl && (
         <div
           className={`${css({
-            gridColumn: '11/12',
+            gridColumn: { base: '5/6', lg: '11/12' },
             margin: 'auto',
             position: 'relative',
           })} group`}
@@ -164,7 +165,7 @@ export default function Header() {
       )}
       <div
         className={css({
-          gridColumn: '12/13',
+          gridColumn: { base: '6/7', lg: '12/13' },
           margin: 'auto',
         })}
       >
