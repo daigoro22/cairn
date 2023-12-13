@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en" className={bizUDPGothic.className}>
       <body className={css({ bg: 'primary.bg' })}>
         <Header />
-        <div className={css({ marginTop: 'header' })}> </div>
+        <div className={css({ marginTop: 'header.height' })}> </div>
         {children}
       </body>
     </html>

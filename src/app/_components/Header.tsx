@@ -6,7 +6,6 @@ import { css } from 'styled-system/css';
 import ImageContainer from './ImageContainer';
 import TextInput from './TextInput';
 import Button from './Button';
-import { delaGothicOne } from '../fonts';
 import {
   AcademicCapIcon,
   ArrowLeftOnRectangleIcon,
@@ -87,7 +86,7 @@ export default function Header() {
       <Link
         href="/"
         className={css({
-          gridColumn: '1/3',
+          gridColumn: '1/5',
           alignItems: 'center',
         })}
       >
@@ -101,20 +100,13 @@ export default function Header() {
         >
           <ImageContainer size="header">
             <Image
-              src="/icon.png"
+              src="/top-icon.png"
               sizes="100vw"
               fill
               objectFit="cover"
               alt="cairn"
             />
           </ImageContainer>
-          <h1
-            className={`${css({ fontSize: 'xl', color: 'primary.dark' })} ${
-              delaGothicOne.className
-            }`}
-          >
-            Cairn
-          </h1>
         </div>
       </Link>
       <div
