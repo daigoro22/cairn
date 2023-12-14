@@ -28,20 +28,20 @@ export default function ReviewCard({
         className={css({
           display: 'grid',
           gridTemplateColumns: 'repeat(6,minmax(2rem,1fr))',
-          gridTemplateRows: 'repeat(2,2rem) repeat(4,auto)',
+          gridTemplateRows: 'repeat(2,4rem) repeat(4,auto)',
           gridColumn: '1/9',
           gridRow: '1/5',
           borderRadius: 'card.xs',
           border: 'primary',
           gap: 'gridGap.sm',
-          width: '18rem',
-          height: '18rem',
+          width: '22rem',
+          height: '22rem',
         })}
       >
         <div
           className={css({
             gridColumn: '1/7',
-            gridRow: '1/4',
+            gridRow: '1/3',
           })}
         >
           <ImageContainer size="item.top">
@@ -59,33 +59,52 @@ export default function ReviewCard({
         <div
           className={css({
             gridColumn: '1/7',
-            gridRow: '4/5',
+            gridRow: '3/4',
             marginLeft: 'md',
           })}
         >
-          <p
+          <h1
             className={css({
-              fontSize: 'md',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
+              fontSize: 'lg',
+              lineClamp: 2,
             })}
           >
             {title}
-          </p>
-          <p>総合評価：{rating}</p>
+          </h1>
+        </div>
+        <div
+          className={css({
+            gridColumn: '1/7',
+            gridRow: '4/5',
+            display: 'flex',
+            flexDirection: 'column',
+            marginLeft: 'md',
+            fontSize: 'md',
+          })}
+        >
+          <div>
+            <p className={css({ display: 'inline' })}>総合評価：</p>
+            <p
+              className={css({
+                color: 'primary.dark',
+                display: 'inline',
+                fontWeight: 800,
+              })}
+            >
+              {rating}
+            </p>
+          </div>
         </div>
         <div
           className={css({
             gridColumn: '1/7',
             gridRow: '5/6',
-            display: 'flex',
-            flexDirection: 'column',
             marginLeft: 'md',
+            fontSize: 'md',
           })}
         >
-          <p>購入目的：{objective}</p>
-          <p>達成度：{objectiveCompletionPercent}%</p>
+          <p>購入目的（達成度{objectiveCompletionPercent}%）</p>
+          <p>{objective}</p>
         </div>
         <div
           className={css({

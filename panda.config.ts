@@ -66,9 +66,9 @@ export default defineConfig({
       },
       fontSizes: {
         xs: { value: '{sizes.xs}' },
-        sm: { value: '{sizes.sm}' },
+        sm: { value: '0.725rem' },
         md: { value: '{sizes.md}' },
-        lg: { value: '{sizes.lg}' },
+        lg: { value: '1.25rem' },
         xl: { value: '{sizes.xl}' },
       },
       radii: {
