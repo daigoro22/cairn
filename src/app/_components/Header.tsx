@@ -161,7 +161,13 @@ export default function Header() {
           margin: 'auto',
         })}
       >
-        <Button onClick={onReviewSubmitButtonClicked}>投稿</Button>
+        {profileIconUrl ? (
+          <Button onClick={onReviewSubmitButtonClicked}>投稿</Button>
+        ) : (
+          <Link href="/auth/login">
+            <Button>ログイン</Button>
+          </Link>
+        )}
       </div>
     </header>
   );

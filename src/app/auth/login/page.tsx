@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { LoginApiSchema } from '@/schemas/login';
 import { loginApiSchema } from '@/schemas/login';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login() {
   const router = useRouter();
@@ -30,22 +31,29 @@ export default function Login() {
     });
 
     if (res.ok) {
-      router.push('/');
+      location.href = '/';
     } else {
       alert('ログイン処理に失敗しました');
     }
   });
 
   return (
-    <main className={mainAreaGrid()}>
+    <main className={mainAreaGrid({ grid: 'xl' })}>
       <section
         className={css({
-          gridColumn: '5/9',
+          gridColumn: { base: '1/7', lg: '5/9' },
         })}
       >
         <h1 className={mainAreaLabel()}>ログイン</h1>
         <form onSubmit={onSubmit}>
           <div className={card()}>
+            <Link
+              href="/auth/sign-up"
+              className={css({ color: 'primary.dark' })}
+            >
+              新規登録はこちら
+            </Link>
+
             <InputContainer label="メールアドレス" error={errors.email}>
               <TextInput
                 id="email"

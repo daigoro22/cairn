@@ -7,22 +7,28 @@ import ReviewCard from './_components/ReviewCard';
 import { useEffect, useState } from 'react';
 import type { ReviewTimelineApiSchema } from '@/schemas/reviews';
 import { reviewTimelineApiSchema } from '@/schemas/reviews';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [reviews, setReviews] = useState<ReviewTimelineApiSchema['data']>([]);
+  const router = useRouter();
 
   useEffect(() => {
     void (async () => {
       const res = await fetch('/api/review', { method: 'GET' });
-      const parsed = reviewTimelineApiSchema.safeParse(await res.json());
-      if (parsed.success) {
-        setReviews(parsed.data.data);
-      } else {
-        console.log(parsed.error);
-        alert('レビューデータの取得に失敗しました');
+      if (res.status === 401) {
+        router.replace('/auth/login');
+      } else if (res.ok) {
+        const parsed = reviewTimelineApiSchema.safeParse(await res.json());
+        if (parsed.success) {
+          setReviews(parsed.data.data);
+        } else {
+          console.log(parsed.error);
+          alert('レビューデータの取得に失敗しました');
+        }
       }
     })();
-  }, []);
+  }, [router]);
 
   return (
     <main className={mainAreaGrid({ grid: 'xl' })}>

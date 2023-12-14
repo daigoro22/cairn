@@ -10,8 +10,10 @@ export const mainAreaGrid = cva({
   variants: {
     grid: {
       md: {
-        gridTemplateColumns:
-          'repeat(4,minmax(0,1fr)) repeat(4,8rem) repeat(4,minmax(0,1fr))',
+        gridTemplateColumns: {
+          base: 'repeat(6,auto)',
+          lg: 'repeat(4,minmax(0,1fr)) repeat(4,8rem) repeat(4,minmax(0,1fr))',
+        },
         gridTemplateRows: 'repeat(10,minmax(0,1fr))',
         gridColumnGap: 'gridGap.md',
         gridRowGap: 'gridGap.md',
