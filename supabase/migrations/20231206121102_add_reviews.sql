@@ -14,7 +14,13 @@ CREATE TABLE IF NOT EXISTS reviews (
     review TEXT not null
 );
 
-ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 
-create policy "Users can update their own reviews."
-  on reviews for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+-- create policy "Users can update their own reviews."
+--   on reviews for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- create policy "Users can delete their own reviews."
+--   on reviews for delete to authenticated using (auth.uid() = user_id);
+
+-- create policy "Public profiles are visible to everyone."
+--   on reviews for select to anon using ( true );
