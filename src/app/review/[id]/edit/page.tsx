@@ -7,7 +7,7 @@ import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 import { mainAreaGrid, subGrid } from '@/app/_components/styles/_layout';
-import { css, cva } from 'styled-system/css';
+import { css } from 'styled-system/css';
 import Image from 'next/image';
 import { join } from '@/utils/panda';
 import { input, inputLabel } from '@/app/_components/styles/input';
@@ -24,14 +24,6 @@ import { format } from 'date-fns';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isKeyOfObject } from '@/utils/form';
 import { useRouter } from 'next/navigation';
-
-const gridCellFlex = cva({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 'md',
-  },
-});
 
 export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -94,51 +86,41 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
 
   return (
     <FormProvider {...methods}>
-      <form
-        className={join([
-          subGrid(),
-          css({
-            gridColumn: '1/7',
-            gridRow: '1/13',
-          }),
-        ])}
-        onSubmit={onSubmit}
-      >
-        <main className={mainAreaGrid({ grid: 'lg' })}>
+      <form onSubmit={onSubmit}>
+        <main className={mainAreaGrid({ grid: 'xl' })}>
           <section
             className={join([
               subGrid(),
-              css({ gridColumn: '4/10', gridRow: '1/13' }),
+              css({
+                gridColumn: { base: '1/5', sm: '2/6', lg: '4/10' },
+                gridRow: '1/13',
+                gridGap: { base: 'sm', lg: 'lg' },
+              }),
             ])}
           >
             <ItemSearchDialog ref={dialogRef} />
-            <h1 className={mainAreaLabel({ grid: 'lg' })}>レビュー投稿</h1>
+            <h1 className={mainAreaLabel({ grid: 'xl' })}>レビュー投稿</h1>
             <div
-              className={join([
-                subGrid(),
-                css({
-                  gridColumn: '1/7',
-                  gridRow: '2/13',
-                  bg: 'white',
-                  borderRadius: 'card.md',
-                }),
-              ])}
+              className={css({
+                gridColumn: { base: '1/5', sm: '1/5', lg: '1/7' },
+                gridRow: { base: '2/6', lg: '2/11' },
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'md',
+                bg: 'white',
+                borderRadius: 'card.md',
+                padding: 'md',
+              })}
             >
+              <h2 className={inputLabel()}>商品</h2>
               <div
                 className={css({
-                  gridColumn: '1/7',
-                  gridRow: '1/2',
+                  display: 'flex',
+                  flexWrap: 'wrap',
                   paddingLeft: 'md',
                   paddingTop: 'md',
-                })}
-              >
-                <h2 className={inputLabel()}>商品</h2>
-              </div>
-              <div
-                className={css({
-                  gridColumn: '1/3',
-                  gridRow: '2/3',
                   marginX: 'auto',
+                  gap: 'md',
                 })}
               >
                 <ImageContainer size="item.review">
@@ -152,31 +134,24 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                     />
                   )}
                 </ImageContainer>
+                <div
+                  className={css({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'md',
+                  })}
+                >
+                  <p>{itemName}</p>
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={dialogOpen}
+                  >
+                    選択
+                  </Button>
+                </div>
               </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '3/7',
-                    gridRow: '2/3',
-                    gap: 'lg',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
-                <p>{itemName}</p>
-                <Button type="button" variant="secondary" onClick={dialogOpen}>
-                  選択
-                </Button>
-              </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '5/7',
-                    gridRow: '3/4',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
+              <div>
                 <InputContainer
                   label={`総合評価：${rating}`}
                   error={errors.rating}
@@ -198,134 +173,79 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                 </InputContainer>
               </div>
 
-              <div
-                className={join([
-                  css({
-                    gridColumn: '1/5',
-                    gridRow: '3/4',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
+              <div>
                 <InputContainer label="レビュータイトル" error={errors.title}>
                   <TextInput type="text" {...register('title')} />
                 </InputContainer>
               </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '1/5',
-                    gridRow: '4/5',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
+              <div>
                 <InputContainer label="商品URL" error={errors.itemUrl}>
                   <TextInput type="url" {...register('itemUrl')} />
                 </InputContainer>
               </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '5/7',
-                    gridRow: '4/5',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
+              <div>
                 <InputContainer label="買った時期" error={errors.purchaseDate}>
                   <DateInput {...register('purchaseDate')} />
                 </InputContainer>
               </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '1/5',
-                    gridRow: '5/6',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
+              <div>
                 <InputContainer label="買った目的" error={errors.objective}>
                   <TextInput type="text" {...register('objective')} />
                 </InputContainer>
               </div>
               <div
-                className={join([
-                  css({
-                    gridColumn: '1/3',
-                    gridRow: '6/7',
-                  }),
-                  gridCellFlex(),
-                ])}
+                className={css({
+                  display: 'flex',
+                  gap: 'md',
+                  alignItems: 'flex-end',
+                  flexWrap: 'wrap',
+                })}
               >
-                <InputContainer
-                  label="目的の達成期間"
-                  error={errors.daysForObjectiveAchievement}
+                <div
+                  className={css({
+                    display: 'flex',
+                    gap: 'md',
+                    alignItems: 'flex-end',
+                    paddingRight: 'md',
+                  })}
                 >
-                  <TextInput
-                    type="number"
-                    step={1}
-                    min={1}
-                    {...register('daysForObjectiveAchievement')}
-                  />
-                </InputContainer>
-              </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '3/4',
-                    gridRow: '6/7',
-                    justifyContent: 'flex-end',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
-                <p className={css({ fontSize: 'md' })}>日</p>
-              </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '4/6',
-                    gridRow: '6/7',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
-                <InputContainer
-                  label="現在の目的の達成度合い"
-                  error={errors.objectiveCompletionPercent}
+                  <InputContainer
+                    label="目的の達成期間"
+                    error={errors.daysForObjectiveAchievement}
+                  >
+                    <TextInput
+                      type="number"
+                      step={1}
+                      min={1}
+                      max={9999}
+                      {...register('daysForObjectiveAchievement')}
+                    />
+                  </InputContainer>
+                  <p className={css({ fontSize: 'md' })}>日</p>
+                </div>
+                <div
+                  className={css({
+                    display: 'flex',
+                    gap: 'lg',
+                    alignItems: 'flex-end',
+                  })}
                 >
-                  <TextInput
-                    type="number"
-                    min={0}
-                    max={100}
-                    step={1}
-                    {...register('objectiveCompletionPercent')}
-                  />
-                </InputContainer>
+                  <InputContainer
+                    label="現在の目的の達成度合い"
+                    error={errors.objectiveCompletionPercent}
+                  >
+                    <TextInput
+                      type="number"
+                      min={0}
+                      max={100}
+                      step={1}
+                      {...register('objectiveCompletionPercent')}
+                    />
+                  </InputContainer>
+                  <p className={css({ fontSize: 'md' })}>%</p>
+                </div>
               </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '6/7',
-                    gridRow: '6/7',
-                    justifyContent: 'flex-end',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
-                <p className={css({ fontSize: 'md' })}>%</p>
-              </div>
-              <div
-                className={join([
-                  css({
-                    gridColumn: '1/6',
-                    gridRow: '7/9',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
+              <div>
                 <InputContainer label="レビュー" error={errors.review}>
                   <textarea
                     className={input({ height: 'block' })}
@@ -336,19 +256,9 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                 </InputContainer>
               </div>
 
-              <div
-                className={join([
-                  css({
-                    gridColumn: '1/4',
-                    gridRow: '9/10',
-                  }),
-                  gridCellFlex(),
-                ])}
-              >
-                <Button type="submit" variant="primary">
-                  投稿
-                </Button>
-              </div>
+              <Button type="submit" variant="primary">
+                投稿
+              </Button>
             </div>
           </section>
         </main>

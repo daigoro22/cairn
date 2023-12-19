@@ -5,7 +5,7 @@ const styleObject = {
   base: { position: 'relative' },
   variants: {
     size: {
-      header: { width: 'header', height: 'header' },
+      header: { width: 'header.width', height: 'header.height' },
       'icon.menu': { width: 'icon.menu', height: 'icon.menu' },
       'icon.reviewCard': {
         width: 'icon.reviewCard',

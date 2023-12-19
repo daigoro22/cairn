@@ -19,7 +19,7 @@ export default defineConfig({
         lg: { value: '1.5rem' },
         xl: { value: '2rem' },
         border: { input: { value: '1px' } },
-        header: { value: '6rem' },
+        header: { width: { value: '12rem' }, height: { value: '6rem' } },
         icon: { menu: { value: '4rem' }, reviewCard: { value: '2rem' } },
         menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
         item: {
@@ -39,7 +39,10 @@ export default defineConfig({
           md: { value: '24px' },
           lg: { value: '12px' },
         },
-        header: { value: '{sizes.header}' },
+        header: {
+          width: { value: '{sizes.header.width}' },
+          height: { value: '{sizes.header.height}' },
+        },
       },
       colors: {
         primary: {
@@ -63,9 +66,9 @@ export default defineConfig({
       },
       fontSizes: {
         xs: { value: '{sizes.xs}' },
-        sm: { value: '{sizes.sm}' },
+        sm: { value: '0.725rem' },
         md: { value: '{sizes.md}' },
-        lg: { value: '{sizes.lg}' },
+        lg: { value: '1.25rem' },
         xl: { value: '{sizes.xl}' },
       },
       radii: {

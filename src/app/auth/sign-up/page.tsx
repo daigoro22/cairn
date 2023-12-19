@@ -58,15 +58,15 @@ export default function SignUp() {
   });
 
   return (
-    <main className={mainAreaGrid()}>
+    <main className={mainAreaGrid({ grid: 'xl' })}>
       <section
         className={css({
-          gridColumn: '5/9',
+          gridColumn: { base: '1/7', lg: '5/9' },
         })}
       >
         <h1 className={mainAreaLabel()}>ユーザ登録</h1>
         <form onSubmit={onSubmit}>
-          <div className={card()}>
+          <div className={card({ padding: 'sm' })}>
             <InputContainer label="名前" error={errors.name}>
               <TextInput
                 id="name"
