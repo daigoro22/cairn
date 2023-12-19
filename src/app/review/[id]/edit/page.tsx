@@ -7,7 +7,7 @@ import InputContainer from '@/app/_components/InputContainer';
 import TextInput from '@/app/_components/TextInput';
 import { mainAreaLabel } from '@/app/_components/styles/display';
 import { mainAreaGrid, subGrid } from '@/app/_components/styles/_layout';
-import { css, cva } from 'styled-system/css';
+import { css } from 'styled-system/css';
 import Image from 'next/image';
 import { join } from '@/utils/panda';
 import { input, inputLabel } from '@/app/_components/styles/input';
@@ -24,14 +24,6 @@ import { format } from 'date-fns';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isKeyOfObject } from '@/utils/form';
 import { useRouter } from 'next/navigation';
-
-const gridCellFlex = cva({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 'md',
-  },
-});
 
 export default function ReviewPage({ params }: { params: { id: string } }) {
   const { id } = params;

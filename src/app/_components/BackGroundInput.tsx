@@ -1,22 +1,13 @@
 'use client';
 
-import { css, cva } from 'styled-system/css';
+import { css } from 'styled-system/css';
 import { inputLabel } from './styles/input';
 import Button from './Button';
-import { join } from '@/utils/panda';
 import InputContainer from './InputContainer';
 import DateInput from './DateInput';
 import { useFormContext } from 'react-hook-form';
 import type { BackgroundEditApiSchema } from '@/schemas/background';
 import TextInput from './TextInput';
-
-const gridCellFlex = cva({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 'md',
-  },
-});
 
 export default function BackGroundInput({
   index,

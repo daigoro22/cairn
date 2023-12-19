@@ -10,11 +10,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { LoginApiSchema } from '@/schemas/login';
 import { loginApiSchema } from '@/schemas/login';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login() {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
