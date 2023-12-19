@@ -130,7 +130,7 @@ export default function Header() {
             position: 'relative',
           })} group`}
         >
-          <ImageContainer size="icon.menu">
+          <ImageContainer size="icon.menu" border="circle">
             <Image
               src={profileIconUrl}
               sizes="100vw"

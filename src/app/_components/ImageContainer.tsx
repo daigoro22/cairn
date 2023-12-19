@@ -1,8 +1,13 @@
+import type { RecipeVariantProps } from 'styled-system/css';
 import { cva } from 'styled-system/css';
 import type { PropsWithChildren } from 'react';
 
-const styleObject = {
-  base: { position: 'relative' },
+const iconContainer = cva({
+  base: {
+    position: 'relative',
+    overflow: 'hidden',
+    // bg: 'blue',
+  },
   variants: {
     size: {
       header: { width: 'header.width', height: 'header.height' },
@@ -15,14 +20,17 @@ const styleObject = {
       'item.top': { width: 'item.top', height: 'item.top' },
       'item.itemModal': { width: 'item.itemModal', height: 'item.itemModal' },
     },
+    border: {
+      card: { borderTopRadius: 'card.xs' },
+      circle: { borderRadius: '50%', border: 'primary' },
+    },
   },
-} as const;
+});
 
-const iconContainer = cva(styleObject);
-
+type Props = RecipeVariantProps<typeof iconContainer>;
 export default function ImageContainer({
   children,
-  size,
-}: PropsWithChildren<{ size: keyof typeof styleObject.variants.size }>) {
-  return <div className={iconContainer({ size })}>{children}</div>;
+  ...rest
+}: PropsWithChildren<Props>) {
+  return <div className={iconContainer(rest)}>{children}</div>;
 }
