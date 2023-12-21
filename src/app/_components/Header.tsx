@@ -20,6 +20,7 @@ import { newReviewApiResponseSchema } from '@/schemas/reviews';
 
 export default function Header() {
   const [profileIconUrl, setProfileIconUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = createBrowserClient();
   const router = useRouter();
 
@@ -57,8 +58,10 @@ export default function Header() {
 
   const onReviewSubmitButtonClicked = () => {
     void (async () => {
+      setIsLoading(true);
       const res = await fetch('/api/review/new', { method: 'POST' });
       if (res.ok) {
+        setIsLoading(false);
         const parsed = newReviewApiResponseSchema.safeParse(await res.json());
         if (parsed.success) {
           router.push(`/review/${parsed.data.data.id}/edit`);
@@ -162,7 +165,9 @@ export default function Header() {
         })}
       >
         {profileIconUrl ? (
-          <Button onClick={onReviewSubmitButtonClicked}>投稿</Button>
+          <Button isLoading={isLoading} onClick={onReviewSubmitButtonClicked}>
+            投稿
+          </Button>
         ) : (
           <Link href="/auth/login">
             <Button>ログイン</Button>

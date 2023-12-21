@@ -18,7 +18,7 @@ export default defineConfig({
         md: { value: '1rem' },
         lg: { value: '1.5rem' },
         xl: { value: '2rem' },
-        border: { input: { value: '1px' } },
+        border: { input: { value: '1px' }, loader: { value: '5px' } },
         header: { width: { value: '12rem' }, height: { value: '6rem' } },
         icon: { menu: { value: '4rem' }, reviewCard: { value: '2rem' } },
         menu: { width: { value: '9rem' }, maxHeight: { value: '5rem' } },
@@ -27,6 +27,7 @@ export default defineConfig({
           top: { value: '100%' },
           itemModal: { value: '6rem' },
         },
+        loader: { value: '2.5rem' },
       },
       spacing: {
         xs: { value: '{sizes.xs}' },
@@ -63,6 +64,14 @@ export default defineConfig({
         tertiary: {
           value: '{sizes.border.input} solid {colors.tertiary.dark}',
         },
+        loader: {
+          fill: {
+            value: '{sizes.border.loader} solid {colors.primary.dark}',
+          },
+          empty: {
+            value: '{sizes.border.loader} solid transparent',
+          },
+        },
       },
       fontSizes: {
         xs: { value: '{sizes.xs}' },
@@ -74,6 +83,18 @@ export default defineConfig({
       radii: {
         input: { value: '{sizes.sm}' },
         card: { md: { value: '{sizes.md}' }, xs: { value: '{sizes.xs}' } },
+      },
+    },
+    extend: {
+      keyframes: {
+        loader: {
+          '0%': {
+            transform: 'translateX(-50%) rotate(0deg)',
+          },
+          '100%': {
+            transform: 'translateX(-50%) rotate(360deg)',
+          },
+        },
       },
     },
   },

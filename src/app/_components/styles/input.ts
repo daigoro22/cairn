@@ -40,6 +40,7 @@ export const button = cva({
     width: '5rem',
     height: '2.5rem',
     fontSize: 'md',
+    position: 'relative',
   },
   variants: {
     visual: {
