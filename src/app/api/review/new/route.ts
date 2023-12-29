@@ -18,25 +18,35 @@ export async function POST() {
     );
   }
 
-  const { data, status, statusText } = await supabase
-    .from('reviews')
-    .insert({
-      title: '',
-      user_id: user.id,
-      item_name: '',
-      item_code: '',
-      item_image_url: '',
-      rating: 0,
-      item_url: '',
-      purchase_date: format(new Date(), 'yyyy-MM-dd'),
-      objective: '',
-      days_for_objective_achievement: 0,
-      objective_completion_percent: 0,
-      review: '',
-      status: 1,
-    })
-    .select('id')
-    .limit(1);
-
-  return NextResponse.json({ error: statusText, data: data?.[0] }, { status });
+  try {
+    const {
+      data,
+      status,
+      error: reviewError,
+    } = await supabase
+      .from('reviews')
+      .insert({
+        title: '',
+        user_id: user.id,
+        item_name: '',
+        item_code: '',
+        item_image_url: '',
+        rating: 0,
+        item_url: '',
+        purchase_date: format(new Date(), 'yyyy-MM-dd'),
+        objective: '',
+        days_for_objective_achievement: 0,
+        objective_completion_percent: 0,
+        review: '',
+        status: 1,
+      })
+      .select('id')
+      .limit(1);
+    return NextResponse.json(
+      { error: reviewError?.message, data: data?.[0] },
+      { status },
+    );
+  } catch (e) {
+    console.log(e);
+  }
 }
