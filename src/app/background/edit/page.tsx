@@ -79,7 +79,7 @@ export default function BackgroundPage() {
               }),
             ])}
           >
-            <h1 className={mainAreaLabel({ grid: 'lg' })}>経歴登録</h1>
+            <h1 className={mainAreaLabel({ grid: 'xl' })}>経歴登録</h1>
             <div
               className={css({
                 gridColumn: { base: '1/4', lg: '1/7' },

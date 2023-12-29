@@ -44,7 +44,7 @@ export default function ReviewCard({
             gridRow: '1/3',
           })}
         >
-          <ImageContainer size="item.top">
+          <ImageContainer size="item.top" border="card">
             {itemImageUrl && (
               <Image
                 src={itemImageUrl}
@@ -113,7 +113,7 @@ export default function ReviewCard({
             margin: 'auto',
           })}
         >
-          <ImageContainer size="icon.reviewCard">
+          <ImageContainer size="icon.reviewCard" border="circle">
             {userProfileIconUrl && (
               <Image
                 src={userProfileIconUrl}

@@ -17,9 +17,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { createBrowserClient } from '@/utils/supabase';
 import { useRouter } from 'next/navigation';
 import { newReviewApiResponseSchema } from '@/schemas/reviews';
+import { useMenuDisclosure } from '../hooks/useMenuDisclosure';
 
 export default function Header() {
   const [profileIconUrl, setProfileIconUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = createBrowserClient();
   const router = useRouter();
 
@@ -57,8 +59,10 @@ export default function Header() {
 
   const onReviewSubmitButtonClicked = () => {
     void (async () => {
+      setIsLoading(true);
       const res = await fetch('/api/review/new', { method: 'POST' });
       if (res.ok) {
+        setIsLoading(false);
         const parsed = newReviewApiResponseSchema.safeParse(await res.json());
         if (parsed.success) {
           router.push(`/review/${parsed.data.data.id}/edit`);
@@ -66,6 +70,8 @@ export default function Header() {
       }
     })();
   };
+
+  const [opened, _, toggle] = useMenuDisclosure();
 
   return (
     <header
@@ -129,8 +135,9 @@ export default function Header() {
             margin: 'auto',
             position: 'relative',
           })} group`}
+          onClick={toggle}
         >
-          <ImageContainer size="icon.menu">
+          <ImageContainer size="icon.menu" border="circle">
             <Image
               src={profileIconUrl}
               sizes="100vw"
@@ -139,7 +146,7 @@ export default function Header() {
               alt="cairn"
             />
           </ImageContainer>
-          <FloatMenu>
+          <FloatMenu opened={opened}>
             <Link href="/background/edit">
               <FloatMenuItem
                 icon={<AcademicCapIcon className={menuIcon()} />}
@@ -162,7 +169,9 @@ export default function Header() {
         })}
       >
         {profileIconUrl ? (
-          <Button onClick={onReviewSubmitButtonClicked}>投稿</Button>
+          <Button isLoading={isLoading} onClick={onReviewSubmitButtonClicked}>
+            投稿
+          </Button>
         ) : (
           <Link href="/auth/login">
             <Button>ログイン</Button>
