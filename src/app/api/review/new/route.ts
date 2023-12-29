@@ -22,6 +22,7 @@ export async function POST() {
     const {
       data,
       status,
+      statusText,
       error: reviewError,
     } = await supabase
       .from('reviews')
@@ -43,7 +44,7 @@ export async function POST() {
       .select('id')
       .limit(1);
     return NextResponse.json(
-      { error: reviewError?.message, data: data?.[0] },
+      { error: reviewError?.message ?? statusText, data: data?.[0] },
       { status },
     );
   } catch (e) {
