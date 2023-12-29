@@ -66,6 +66,8 @@ export default function Header() {
         const parsed = newReviewApiResponseSchema.safeParse(await res.json());
         if (parsed.success) {
           router.push(`/review/${parsed.data.data.id}/edit`);
+        } else {
+          console.log(parsed.error);
         }
       }
     })();
