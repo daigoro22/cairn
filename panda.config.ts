@@ -36,7 +36,7 @@ export default defineConfig({
         lg: { value: '{sizes.lg}' },
         xl: { value: '{sizes.xl}' },
         gridGap: {
-          sm: { value: '5px' },
+          sm: { value: '10px' },
           md: { value: '24px' },
           lg: { value: '12px' },
         },

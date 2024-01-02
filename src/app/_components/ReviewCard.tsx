@@ -34,8 +34,8 @@ export default function ReviewCard({
           borderRadius: 'card.xs',
           border: 'primary',
           gap: 'gridGap.sm',
-          width: '22rem',
-          height: '22rem',
+          width: { base: '16rem', lg: '20rem' },
+          height: '100%',
         })}
       >
         <div
@@ -108,9 +108,13 @@ export default function ReviewCard({
         </div>
         <div
           className={css({
-            gridColumn: '1/2',
+            gridColumn: '1/7',
             gridRow: '6/7',
-            margin: 'auto',
+            marginY: 'auto',
+            marginLeft: 'md',
+            display: 'flex',
+            gap: 'md',
+            alignItems: 'center',
           })}
         >
           <ImageContainer size="icon.reviewCard" border="circle">
@@ -124,15 +128,6 @@ export default function ReviewCard({
               />
             )}
           </ImageContainer>
-        </div>
-
-        <div
-          className={css({
-            gridColumn: '2/7',
-            gridRow: '6/7',
-            marginY: 'auto',
-          })}
-        >
           <p className={css({ fontSize: 'sm' })}>{userName}</p>
           {/* TODO: 購入時の肩書追加 */}
         </div>
