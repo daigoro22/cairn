@@ -110,7 +110,7 @@ export default function ReviewCard({
           className={css({
             gridColumn: '1/7',
             gridRow: '6/7',
-            marginY: 'auto',
+            marginBottom: 'sm',
             marginLeft: 'md',
             display: 'flex',
             gap: 'md',
