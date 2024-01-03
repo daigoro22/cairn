@@ -82,7 +82,7 @@ export default function Header() {
         height: 'header',
         display: 'grid',
         gridTemplateColumns: { base: 'repeat(6,1fr)', lg: 'repeat(12,1fr)' },
-        gridColumnGap: 'gridGap.md',
+        gridColumnGap: { base: 'gridGap.sm', lg: 'gridGap.md' },
         alignItems: 'center',
         bg: 'white',
         position: 'fixed',
@@ -95,7 +95,7 @@ export default function Header() {
       <Link
         href="/"
         className={css({
-          gridColumn: '1/5',
+          gridColumn: { base: '1/5', md: '1/3' },
           alignItems: 'center',
         })}
       >
@@ -134,7 +134,7 @@ export default function Header() {
       {profileIconUrl && (
         <div
           className={css({
-            gridColumn: { base: '5/6', lg: '11/12' },
+            gridColumn: { lg: '11/12', base: '5/7' },
             margin: 'auto',
             position: 'relative',
           })}
@@ -173,7 +173,7 @@ export default function Header() {
       )}
       <div
         className={css({
-          display: { base: 'none', md: 'block' },
+          display: { base: 'none', lg: 'block' },
           gridColumn: { base: '6/7', lg: '12/13' },
           margin: 'auto',
         })}
