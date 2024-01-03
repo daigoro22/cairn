@@ -51,9 +51,9 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
       className={css({
         inset: 0,
         marginX: 'auto',
-        marginY: '30%',
+        marginY: '10%',
         width: { base: '90%', lg: '50%' },
-        height: { base: '80%', lg: '30%' },
+        height: { base: '90%', lg: '30%' },
         border: 'secondary',
         borderRadius: 'input',
         paddingX: 'md',
@@ -87,7 +87,7 @@ const ItemSearchDialog = forwardRef(function ItemSearchDialog(
           >
             <TextInput
               placeholder="商品のキーワードを入力"
-              variants={{ marginX: 'none' }}
+              variants={{ marginX: 'none', width: 'fill' }}
               onBlur={(e) => setKeyword(e.currentTarget.value)}
             />
             <Button type="button" variant="secondary" onClick={onSearchClick}>
