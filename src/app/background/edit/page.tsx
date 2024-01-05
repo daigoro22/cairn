@@ -16,7 +16,10 @@ import {
 } from '@/schemas/background';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const initialBackground: BackgroundEditApiSchema['items'][number] = {
+const initialBackground: BackgroundEditApiSchema['items'][number] & {
+  id: string;
+} = {
+  id: '',
   organizationName: '',
   startDate: '',
   endDate: '',
@@ -69,7 +72,7 @@ export default function BackgroundPage() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
-        <main className={mainAreaGrid({ grid: 'lg' })}>
+        <main className={mainAreaGrid({ grid: 'xl' })}>
           <section
             className={join([
               subGrid(),
@@ -93,13 +96,15 @@ export default function BackgroundPage() {
                 justifyContent: 'flex-start',
               })}
             >
-              {fields.map(({ id }, index) => (
-                <BackGroundInput
-                  key={id}
-                  index={index}
-                  onRemove={() => remove(index)}
-                />
-              ))}
+              {(fields.length ? fields : [initialBackground]).map(
+                ({ id }, index) => (
+                  <BackGroundInput
+                    key={id}
+                    index={index}
+                    onRemove={() => remove(index)}
+                  />
+                ),
+              )}
               <div className={css({ display: 'flex', gap: 'md' })}>
                 <Button
                   type="button"
