@@ -67,7 +67,10 @@ export default function BackGroundInput({
               alignItems: 'flex-end',
             })}
           >
-            <TextInput {...register(`items.${index}.organizationName`)} />
+            <TextInput
+              variants={{ width: 'fill' }}
+              {...register(`items.${index}.organizationName`)}
+            />
             {/* <Button variant="secondary">検索</Button> */}
           </div>
         </InputContainer>

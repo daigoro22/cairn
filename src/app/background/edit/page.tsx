@@ -77,7 +77,7 @@ export default function BackgroundPage() {
             className={join([
               subGrid(),
               css({
-                gridColumn: { base: '2/6', lg: '4/10' },
+                gridColumn: { base: '1/7', lg: '4/10' },
                 gridRow: '1/13',
               }),
             ])}
@@ -85,7 +85,7 @@ export default function BackgroundPage() {
             <h1 className={mainAreaLabel({ grid: 'xl' })}>経歴登録</h1>
             <div
               className={css({
-                gridColumn: { base: '1/4', lg: '1/7' },
+                gridColumn: { base: '1/7' },
                 gridRow: '2/13',
                 bg: 'white',
                 borderRadius: 'card.md',
