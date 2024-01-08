@@ -10,6 +10,7 @@ import {
   AcademicCapIcon,
   ArrowLeftOnRectangleIcon,
 } from '@heroicons/react/24/solid';
+import { DocumentPlusIcon } from '@heroicons/react/24/outline';
 import FloatMenu from './FloatMenu';
 import FloatMenuItem from './FloatMenuItem';
 import { menuIcon } from './styles/display';
@@ -81,7 +82,7 @@ export default function Header() {
         height: 'header',
         display: 'grid',
         gridTemplateColumns: { base: 'repeat(6,1fr)', lg: 'repeat(12,1fr)' },
-        gridColumnGap: 'gridGap.md',
+        gridColumnGap: { base: 'gridGap.sm', lg: 'gridGap.md' },
         alignItems: 'center',
         bg: 'white',
         position: 'fixed',
@@ -94,7 +95,7 @@ export default function Header() {
       <Link
         href="/"
         className={css({
-          gridColumn: '1/5',
+          gridColumn: { base: '1/5', md: '1/3' },
           alignItems: 'center',
         })}
       >
@@ -132,11 +133,11 @@ export default function Header() {
       </div>
       {profileIconUrl && (
         <div
-          className={`${css({
-            gridColumn: { base: '5/6', lg: '11/12' },
+          className={css({
+            gridColumn: { lg: '11/12', base: '5/7' },
             margin: 'auto',
             position: 'relative',
-          })} group`}
+          })}
           onClick={toggle}
         >
           <ImageContainer size="icon.menu" border="circle">
@@ -155,6 +156,12 @@ export default function Header() {
                 label="経歴登録"
               />
             </Link>
+            <button type="button" onClick={onReviewSubmitButtonClicked}>
+              <FloatMenuItem
+                icon={<DocumentPlusIcon className={menuIcon()} />}
+                label="投稿"
+              />
+            </button>
             <button type="button" onClick={onLogout}>
               <FloatMenuItem
                 icon={<ArrowLeftOnRectangleIcon className={menuIcon()} />}
@@ -166,11 +173,12 @@ export default function Header() {
       )}
       <div
         className={css({
+          display: { base: 'none', lg: 'block' },
           gridColumn: { base: '6/7', lg: '12/13' },
           margin: 'auto',
         })}
       >
-        {profileIconUrl ? (
+        {profileIconUrl ? ( // FIXME: セッション取得用 hooks 用意してログインしていたかどうかの state から判定する
           <Button isLoading={isLoading} onClick={onReviewSubmitButtonClicked}>
             投稿
           </Button>

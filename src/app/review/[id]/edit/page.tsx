@@ -207,42 +207,49 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
                     gap: 'md',
                     alignItems: 'flex-end',
                     paddingRight: 'md',
+                    flexGrow: 1,
                   })}
                 >
-                  <InputContainer
-                    label="目的の達成期間"
-                    error={errors.daysForObjectiveAchievement}
-                  >
-                    <TextInput
-                      type="number"
-                      step={1}
-                      min={1}
-                      max={9999}
-                      {...register('daysForObjectiveAchievement')}
-                    />
-                  </InputContainer>
-                  <p className={css({ fontSize: 'md' })}>日</p>
+                  <div className={css({ flexGrow: 9 })}>
+                    <InputContainer
+                      label="目的の達成期間"
+                      error={errors.daysForObjectiveAchievement}
+                    >
+                      <TextInput
+                        type="number"
+                        step={1}
+                        min={1}
+                        max={9999}
+                        {...register('daysForObjectiveAchievement')}
+                      />
+                    </InputContainer>
+                  </div>
+                  <p className={css({ fontSize: 'md', flexGrow: 1 })}>日</p>
                 </div>
                 <div
                   className={css({
                     display: 'flex',
-                    gap: 'lg',
+                    gap: 'md',
                     alignItems: 'flex-end',
+                    paddingRight: 'md',
+                    flexGrow: 1,
                   })}
                 >
-                  <InputContainer
-                    label="現在の目的の達成度合い"
-                    error={errors.objectiveCompletionPercent}
-                  >
-                    <TextInput
-                      type="number"
-                      min={0}
-                      max={100}
-                      step={1}
-                      {...register('objectiveCompletionPercent')}
-                    />
-                  </InputContainer>
-                  <p className={css({ fontSize: 'md' })}>%</p>
+                  <div className={css({ flexGrow: 9 })}>
+                    <InputContainer
+                      label="現在の目的の達成度合い"
+                      error={errors.objectiveCompletionPercent}
+                    >
+                      <TextInput
+                        type="number"
+                        min={0}
+                        max={100}
+                        step={1}
+                        {...register('objectiveCompletionPercent')}
+                      />
+                    </InputContainer>
+                  </div>
+                  <p className={css({ fontSize: 'md', flexGrow: 1 })}>%</p>
                 </div>
               </div>
               <div>

@@ -84,7 +84,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             </div>
             <div
               className={css({
-                gridColumn: '1/3',
+                gridColumn: { base: '2/4', lg: '3/5' },
                 gridRow: '2/3',
                 marginX: 'auto',
               })}
@@ -103,8 +103,9 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             </div>
             <div
               className={css({
-                gridColumn: { base: '3/5', lg: '3/7' },
-                gridRow: '2/3',
+                gridColumn: '1/7',
+                gridRow: '3/4',
+                padding: 'md',
               })}
             >
               <a href={data?.itemUrl}>{data?.itemName}</a>
@@ -113,7 +114,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={join([
                 css({
                   gridColumn: '1/4',
-                  gridRow: '3/4',
+                  gridRow: '4/5',
                 }),
                 gridCellFlex(),
               ])}
@@ -140,7 +141,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={join([
                 css({
                   gridColumn: { base: '1/3', lg: '1/4' },
-                  gridRow: '4/5',
+                  gridRow: '5/6',
                 }),
                 gridCellFlex(),
               ])}
@@ -153,7 +154,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={join([
                 css({
                   gridColumn: { base: '3/5', lg: '4/7' },
-                  gridRow: '4/5',
+                  gridRow: '5/6',
                 }),
                 gridCellFlex(),
               ])}
@@ -166,7 +167,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={join([
                 css({
                   gridColumn: { base: '1/3', lg: '1/4' },
-                  gridRow: '5/6',
+                  gridRow: '6/7',
                 }),
                 gridCellFlex(),
               ])}
@@ -179,7 +180,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={join([
                 css({
                   gridColumn: { base: '3/5', lg: '4/7' },
-                  gridRow: '5/6',
+                  gridRow: '6/7',
                 }),
                 gridCellFlex(),
               ])}
@@ -192,7 +193,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
               className={join([
                 css({
                   gridColumn: '1/6',
-                  gridRow: '6/8',
+                  gridRow: '7/9',
                 }),
                 gridCellFlex(),
               ])}

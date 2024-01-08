@@ -16,7 +16,10 @@ import {
 } from '@/schemas/background';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const initialBackground: BackgroundEditApiSchema['items'][number] = {
+const initialBackground: BackgroundEditApiSchema['items'][number] & {
+  id: string;
+} = {
+  id: '',
   organizationName: '',
   startDate: '',
   endDate: '',
@@ -69,12 +72,12 @@ export default function BackgroundPage() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
-        <main className={mainAreaGrid({ grid: 'lg' })}>
+        <main className={mainAreaGrid({ grid: 'xl' })}>
           <section
             className={join([
               subGrid(),
               css({
-                gridColumn: { base: '2/6', lg: '4/10' },
+                gridColumn: { base: '1/7', lg: '4/10' },
                 gridRow: '1/13',
               }),
             ])}
@@ -82,7 +85,7 @@ export default function BackgroundPage() {
             <h1 className={mainAreaLabel({ grid: 'xl' })}>経歴登録</h1>
             <div
               className={css({
-                gridColumn: { base: '1/4', lg: '1/7' },
+                gridColumn: { base: '1/7' },
                 gridRow: '2/13',
                 bg: 'white',
                 borderRadius: 'card.md',
@@ -93,13 +96,15 @@ export default function BackgroundPage() {
                 justifyContent: 'flex-start',
               })}
             >
-              {fields.map(({ id }, index) => (
-                <BackGroundInput
-                  key={id}
-                  index={index}
-                  onRemove={() => remove(index)}
-                />
-              ))}
+              {(fields.length ? fields : [initialBackground]).map(
+                ({ id }, index) => (
+                  <BackGroundInput
+                    key={id}
+                    index={index}
+                    onRemove={() => remove(index)}
+                  />
+                ),
+              )}
               <div className={css({ display: 'flex', gap: 'md' })}>
                 <Button
                   type="button"
